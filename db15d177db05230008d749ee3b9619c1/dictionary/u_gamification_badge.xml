@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element label="Gamification Badge" max_length="40" name="u_gamification_badge" sizeclass="3" type="collection">
+        <element label="Activity" max_length="40" name="u_activity" type="string"/>
+        <element attributes="pdf_cell_type=image,edge_encryption_enabled=true" label="Badge Icon" max_length="40" name="u_badge_icon" type="user_image"/>
+        <element display="true" label="Badge Name" max_length="40" name="u_badge_name" type="string"/>
+    </element>
+</database>

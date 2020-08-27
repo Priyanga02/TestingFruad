@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[function() {
+  /* widget controller */
+  var c = this;
+}]]></client_script>
+        <controller_as>c</controller_as>
+        <css>* {
+	box-sizing: border-box;
+}
+
+.clear {
+	clear: both;
+}
+
+body {
+	color: #333;
+	display: block;
+	font-family: Open Sans;
+	font-size: 13px;
+	line-height: 1.75em; /*18px;*/
+		-webkit-text-size-adjust: none;
+	margin: 0px;
+	text-rendering: optimizeLegibility;
+}
+
+p {
+	margin-top: 0px;
+	margin-bottom: 18px;
+}
+
+.card{
+  background-color: #f8f8f8;
+  width:400px;//170
+  height:290px;
+  margin:20px 0px 20px 0px;
+  box-shadow:0 20px 50px rgba(0,0,0,.1);
+  border-radius:4px;
+  transition:0.5s;
+}
+
+ .card:hover {
+   // box-shadow:0 30px 70px rgba(0,0,0,.2);
+     box-shadow:5px 5px 5px #04675c;
+}
+
+.card-top {
+	color: #fff;
+	font-size: 18px;
+	padding:15px;
+  padding-left:20px;
+	//margin: 20px 20px 0 20px;
+  width:100%;
+ border-radius: 4px 4px 0px 0px;
+}
+
+.card-top-green {
+		background-color:#0e8a7d;
+}
+
+.card-top-blue {
+		background-color: #0A6CB5;
+}
+
+/*.card-bottom {
+	border-left: 1px solid #ddd;
+	border-right: 1px solid #ddd;
+	border-bottom: 1px solid #ddd;	
+	border-radius: 0 0 4px 4px;
+		-webkit-border-radius: 0 0 4px 4px;
+		-moz-border-radius: 0 0 4px 4px;
+	box-shadow: 0px 1px 4px 0px #eee, 0px 4px 6px -2px #eee;
+		-moz-box-shadow: 0px 1px 4px 0px #eee, 0px 4px 6px -2px #eee;
+    -webkit-box-shadow: 0px 1px 4px 0px #eee, 0px 4px 6px -2px #eee;
+	padding: 15px;
+	//margin: 0 20px 20px 20px;
+  width:100%;
+  height:100%;
+}*/
+
+.topNavColorContainer {
+	background-color: #f8f8f8;
+	box-shadow: 0px 2px 4px #dcddde;
+		-moz-box-shadow: 0px 2px 4px #dcddde;
+		-webkit-box-shadow: 0px 2px 4px #dcddde;
+	display: block;
+	height: auto;
+	margin: 0px auto;
+	width: 100%;
+}
+.row{
+    margin:10px;
+  word-wrap: normal;
+  text-align: center;
+  font-weight: bold;
+  color:black;
+}
+
+
+</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>false</has_preview>
+        <id/>
+        <internal>false</internal>
+        <link/>
+        <name>ESM Gamification widget6</name>
+        <option_schema/>
+        <public>true</public>
+        <roles/>
+        <script><![CDATA[(function() {
+
+ data.options=[];
+ var gp = new GlideRecord('u_esmcafe_gamification_table');
+ gp.addQuery('active',true);
+ var userId=gs.getUserID();
+ gp.orderByDesc('u_points');
+ gp.setLimit(5);
+ gp.query();
+
+ while(gp.next()){
+	 var x={};
+	 var gr1 = new GlideRecord('sys_user');
+	 gr1.addActiveQuery();
+	 gr1.addQuery('user_name',gp.getDisplayValue('u_user'));
+	 gr1.query();
+	 if(gr1.next())
+		 {
+			 x.user=gr1.getValue('name');
+		 }
+	 
+	 x.points=gp.getValue('u_points');
+	 x.level=gp.getValue('u_level');	
+	 data.options.push(x);
+	 
+ }
+
+})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>admin.suganya</sys_created_by>
+        <sys_created_on>2018-11-08 12:22:13</sys_created_on>
+        <sys_id>f779d057dbad6b000e269334ca96192b</sys_id>
+        <sys_mod_count>28</sys_mod_count>
+        <sys_name>ESM Gamification widget6</sys_name>
+        <sys_package display_value="EsmCafe Gamification" source="db15d177db05230008d749ee3b9619c1">db15d177db05230008d749ee3b9619c1</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="EsmCafe Gamification">db15d177db05230008d749ee3b9619c1</sys_scope>
+        <sys_update_name>sp_widget_f779d057dbad6b000e269334ca96192b</sys_update_name>
+        <sys_updated_by>admin.vikas</sys_updated_by>
+        <sys_updated_on>2018-11-20 04:22:03</sys_updated_on>
+        <template><![CDATA[<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600" rel="stylesheet" type="text/css">
+
+<div class="card">
+  
+	<div class="card-top card-top-green" style="font-weight:bold;"><span style="text-align:left;">LEADERBOARD</span>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<span style="text-align:right;">TOP5</span></div>
+ <div style="margin:5px 20px 5px 20px">
+  <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">User</th>
+      <th scope="col">Points</th>
+      <th scope="col">Level</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="i in data.options">
+      <td data-label="Account">{{i.user}}</td>
+      <td data-label="Due Date">{{i.points}}</td>
+      <td data-label="Amount">{{i.level}}</td>
+    </tr>
+   
+  </tbody>
+</table>
+ </div>
+</div>
+
+]]></template>
+    </sp_widget>
+</record_update>

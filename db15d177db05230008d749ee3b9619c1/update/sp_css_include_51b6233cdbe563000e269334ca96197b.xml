@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_css_include">
+    <sp_css_include action="INSERT_OR_UPDATE">
+        <name>cloudflare</name>
+        <source>url</source>
+        <sp_css/>
+        <sys_class_name>sp_css_include</sys_class_name>
+        <sys_created_by>admin.vikas</sys_created_by>
+        <sys_created_on>2018-11-01 08:54:00</sys_created_on>
+        <sys_id>51b6233cdbe563000e269334ca96197b</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>cloudflare</sys_name>
+        <sys_package display_value="EsmCafe Gamification" source="db15d177db05230008d749ee3b9619c1">db15d177db05230008d749ee3b9619c1</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="EsmCafe Gamification">db15d177db05230008d749ee3b9619c1</sys_scope>
+        <sys_update_name>sp_css_include_51b6233cdbe563000e269334ca96197b</sys_update_name>
+        <sys_updated_by>admin.vikas</sys_updated_by>
+        <sys_updated_on>2018-11-01 08:54:00</sys_updated_on>
+        <url>https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css</url>
+    </sp_css_include>
+</record_update>

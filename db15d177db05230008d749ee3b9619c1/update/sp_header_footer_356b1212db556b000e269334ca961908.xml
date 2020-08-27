@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_header_footer">
+    <sp_header_footer action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[function() {
+  /* widget controller */
+  var c = this;
+}]]></client_script>
+        <controller_as>c</controller_as>
+        <css/>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>false</has_preview>
+        <id/>
+        <internal>false</internal>
+        <link/>
+        <name>GamificationHeader</name>
+        <option_schema/>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function() {
+  /* populate the 'data' object */
+  /* e.g., data.table = $sp.getValue('table'); */
+
+})();]]></script>
+        <servicenow>false</servicenow>
+        <static>false</static>
+        <sys_class_name>sp_header_footer</sys_class_name>
+        <sys_created_by>admin.vikas</sys_created_by>
+        <sys_created_on>2018-10-24 09:00:21</sys_created_on>
+        <sys_id>356b1212db556b000e269334ca961908</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>GamificationHeader</sys_name>
+        <sys_package display_value="EsmCafe Gamification" source="db15d177db05230008d749ee3b9619c1">db15d177db05230008d749ee3b9619c1</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="EsmCafe Gamification">db15d177db05230008d749ee3b9619c1</sys_scope>
+        <sys_update_name>sp_header_footer_356b1212db556b000e269334ca961908</sys_update_name>
+        <sys_updated_by>admin.vikas</sys_updated_by>
+        <sys_updated_on>2018-10-24 09:00:21</sys_updated_on>
+        <template><![CDATA[<nav class="navbar navbar-inverse" style="padding-bottom:0px; margin-bottom:0px; width:100%">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="javascript:void(0)">EsmCafe Gamification</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li><a href="javascript:void(0)">My Points</a></li>
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="javascript:void(0)">Levels<span class="caret"></span></a>
+        </li>
+        <li><a href="javascript:void(0)">Badges</a></li>
+        <li><a href="javascript:void(0)">Criteria</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="javascript:void(0)"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+        <li><a href="javascript:void(0)"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+  ]]></template>
+    </sp_header_footer>
+</record_update>

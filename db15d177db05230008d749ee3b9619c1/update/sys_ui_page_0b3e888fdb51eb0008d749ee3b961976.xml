@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ui_page">
+    <sys_ui_page action="INSERT_OR_UPDATE">
+        <category>general</category>
+        <client_script/>
+        <description/>
+        <direct>false</direct>
+        <endpoint/>
+        <html><![CDATA[<?xml version="1.0" encoding="utf-8" ?>
+<j:jelly trim="false" xmlns:j="jelly:core" xmlns:g="glide" xmlns:j2="null" xmlns:g2="null">
+
+</j:jelly>]]></html>
+        <name>EsmCafe_Gamification_Target</name>
+        <processing_script><![CDATA[var gr = new GlideRecord('u_esmcafe_gamification_table');
+gr.addQuery('u_user',gs.getUserID());
+gr.query();
+if(gr.next()){
+var points = gr.u_points;
+var level = gr.u_level;
+}
+
+var gr1 = new GlideRecord('u_gamification_level');
+gs.print(level);
+switch(level.toString()) {
+
+case 'Level 1':
+
+gr1.addQuery('u_level','level 2');
+gr1.query();
+if(gr1.next()){
+
+var attain = gr1.u_point;
+var takediff = attain-points;
+
+}
+		break;
+case 'Level 2':
+
+gr1.addQuery('u_level','level 3');
+gr1.query();
+if(gr1.next()){
+
+var attain = gr1.u_point;
+var takediff = attain-points;
+
+}
+		break;
+case 'Level 3':
+
+gr1.addQuery('u_level','level 4');
+gr1.query();
+if(gr1.next()){
+
+var attain = gr1.u_point;
+var takediff = attain-points;
+
+}
+else{
+var takediff = "success";
+}
+		break;
+default :
+
+}]]></processing_script>
+        <sys_class_name>sys_ui_page</sys_class_name>
+        <sys_created_by>admin.suganya</sys_created_by>
+        <sys_created_on>2018-10-26 06:42:00</sys_created_on>
+        <sys_id>0b3e888fdb51eb0008d749ee3b961976</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>EsmCafe_Gamification_Target</sys_name>
+        <sys_package display_value="EsmCafe Gamification" source="db15d177db05230008d749ee3b9619c1">db15d177db05230008d749ee3b9619c1</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="EsmCafe Gamification">db15d177db05230008d749ee3b9619c1</sys_scope>
+        <sys_update_name>sys_ui_page_0b3e888fdb51eb0008d749ee3b961976</sys_update_name>
+        <sys_updated_by>admin.suganya</sys_updated_by>
+        <sys_updated_on>2018-10-26 06:42:00</sys_updated_on>
+    </sys_ui_page>
+</record_update>

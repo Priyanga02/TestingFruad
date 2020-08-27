@@ -1,0 +1,719 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[function($rootScope, $scope, snRecordWatcher, spUtil, $location, $uibModal, cabrillo, $timeout, $window) {
+  /* widget controller */
+  var c = this;
+	
+
+}]]></client_script>
+        <controller_as>c</controller_as>
+        <css>.grid { 
+  margin-top:10px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(245px, 1fr));
+  grid-gap: 10px;
+  align-items: stretch;
+  }
+
+.grid &gt; article {
+  border: 1px solid #ccc;
+  box-shadow: 2px 2px 6px 0px  rgba(0,0,0,0.3);
+}
+
+.grid &gt; article img {
+  max-width: 100%;
+}
+h2
+{
+   font-family: 'Oswald', sans-serif;
+  	font-weight:500;
+  	font-style:normal;
+}
+
+
+html, body, 
+.container {
+                position: fixed;
+                width: 100%;
+                height: 100%;
+}
+
+body {
+                overflow-y: scroll;
+                background: #333;
+}
+
+span{
+font-family: "Times New Roman", Times, serif;
+
+}
+
+.splitlayout {
+                position: fixed;
+                overflow-x: hidden;
+                height: 100%;
+                width: 100%;
+}
+
+/* Intro sides */
+.side {
+                position: fixed;
+                top: 0;
+                z-index: 100;
+                width: 50%;
+                height: 100%;
+                text-align: center;
+                -webkit-backface-visibility: hidden;
+}
+
+.open-left .side,
+.open-right .side {
+                cursor: default;
+}
+
+.overlay {
+                position: absolute;
+                top: 0;
+                left: 0;
+                z-index: 499;
+                visibility: hidden;
+                width: 100%;
+                height: 100%;
+                opacity: 0;
+}
+.fonts{
+  font-family: 'Mukta Mahee', sans-serif;
+  font-size:15px;
+}
+
+.side-left .overlay {
+                background: rgba(0,0,0,0.7);
+}
+
+.side-right .overlay {
+                background: rgba(0,0,0,0.3);
+}
+
+.side-left {
+                left: 0;
+                background-color: #03A9F4; 
+  
+                color: #fff;
+                outline: 1px solid #47a3da; /* avoid gap */
+}
+
+.side-right {
+                right: 0;
+                background: #fff;
+                color: #47a3da;
+                outline: 1px solid #fff; /* avoid gap */
+}
+
+/* Intro content, profile image and name, back button */
+.intro-content {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                padding: 0 1em;
+                width: 50%;
+                cursor: pointer;
+                -webkit-transform: translateY(-50%) translateX(-50%);
+                transform: translateY(-50%) translateX(-50%);
+}
+
+.profile {
+                margin: 0 auto;
+                width: 150px;
+                height: 150px;
+                border-radius: 50%;
+                background: #fff;
+}
+
+.side-right .profile {
+                background: #47a3da;
+}
+
+.profile img {
+                max-width: 100%;
+                border-radius: 50%;
+                opacity: 0.6;
+}
+
+.intro-content h1 &gt; span {
+                display: block;
+                white-space: nowrap;
+}
+
+.intro-content h1 &gt; span:first-child {
+                font-weight: 300;
+                font-size: auto;
+}
+
+.intro-content h1 &gt; span:nth-child(2) {
+                position: relative;
+                margin-top: 0.5em;
+                padding: 0.8em;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                font-size: 0.8em;
+}
+
+.intro-content h1 &gt; span:nth-child(2):before {
+                position: absolute;
+                top: 0;
+                left: 25%;
+                width: 50%;
+                height: 2px;
+                background: #fff;
+                content: '';
+}
+
+.side-right .intro-content h1 &gt; span:nth-child(2):before {
+                background: #47a3da;
+}
+
+.back {
+                position: fixed;
+                top: 2.6em;
+                z-index: 500;
+                display: block;
+                visibility: hidden;
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                color: #47a3da;
+                text-align: center;
+                font-size: 22px;
+                line-height: 44px;
+                opacity: 0;
+                pointer-events: none;
+}
+
+.mobile-layout .back { /* fixed positioning will make this not clickable after scrolling on some mobile devices */
+                position: absolute;
+}
+
+.back-left {
+                left: 12.5%;
+                -webkit-transform: translateX(-50%);
+                transform: translateX(-50%);
+}
+
+.back-right {
+                right: 12.5%;
+                -webkit-transform: translateX(50%);
+                transform: translateX(50%);
+                color: #fff;
+}
+
+.open-right .back-left,
+.open-left .back-right {
+                visibility: visible;
+                opacity: 1;
+                -webkit-transition-delay: 0.3s;
+                transition-delay: 0.3s;
+                pointer-events: auto;
+}
+
+.back:hover {
+                color: #ddd;
+}
+
+/* Pages */
+.page {
+                position: relative;
+                top: 0;
+                overflow: auto;
+                min-height: 100%;
+                width: 75%;
+                height: auto;
+                font-size: 1.4em;
+                -webkit-backface-visibility: hidden;
+                outline: 5px solid #ecf0f1; /* avoid rounding gaps */
+                background: #ecf0f1;
+  color: #97a8b2;
+}
+
+.test1{
+}
+
+
+.page-right {
+                left: 25%;
+                -webkit-transform: translateX(100%);
+                transform: translateX(100%);
+}
+
+.splitlayout.open-right {
+                background: #ecf0f1;
+}
+
+.page-left {
+                left: 0;
+                text-align: center;
+                -webkit-transform: translateX(-100%);
+                transform: translateX(-100%);
+}
+
+.splitlayout.open-left {
+                background: #ecf0f1;
+}
+
+
+.card-view .card:hover {
+   // box-shadow:0 30px 70px rgba(0,0,0,.2);
+     box-shadow:5px 5px 5px #04675c;
+  
+    -ms-transform: scale(1.13); /* IE 9 */
+    -webkit-transform: scale(1.13); /* Safari 3-8 */
+    transform: scale(1.13); 
+
+
+}
+
+.card-view .card .img {
+    width:120px;
+    height:120px;
+    //margin:0 auto;
+    border-radius:50%;
+    overflow:hidden;
+}
+.card-view .card .img img {
+    width:100%;
+    height:100%;
+}
+.card-view .card .info {
+  
+  text-align:center;
+  padding:20px;
+}
+.card-view .card .info h1 {
+  margin: 0;
+}
+.card-view .card .info h5 {
+  margin: 0;
+}
+.card-view .card .card-button {
+  background: white;
+  border: 0;
+  background: #fc4a1a;
+  position: absolute;
+  color: white;
+  bottom: 0;
+  width: inherit;
+  /*border-bottom-left-radius: 3px;
+  border-bottom-bottom-radius: 3px;*/
+  padding: 10px;
+}
+.list-view {
+  max-width: 1600px;
+  margin: auto;
+  height: 100%;
+}
+.list-view .list {
+  /*overflow: scroll;*/
+  height: 700px;
+}
+.card-view-info {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background: white;
+  bottom: -1000px;
+  left: 0;
+  visibility: hidden;
+  transition: all 0.5s ease-in-out;
+}
+.card-view-info .nav {
+  display: inline-block;
+  float: left;
+  width: 300px;
+}
+.card-view-info .nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.card-view-info .nav ul li {
+  padding: 15px 15px;
+  width: 200px;
+  border: 1px solid gray;
+  text-align: center;
+}
+.card-view-info .info-sect {
+  display: inline-block;
+  float: left;
+  width: calc(100% - 300px);
+}
+
+.card-view {
+  max-width: 1600px;
+  margin: auto;
+  height: 100%;
+  cursor:default;
+}
+.card-view .card {
+  position: relative;
+  //background: white;
+  display: inline-flex;
+  width: 205px;
+  height: 345px;
+  //border: 1px solid lightgray;
+  margin: 30px 15px 30px 15px;
+  //box-shadow:0 20px 50px rgba(0,0,0,.3);
+ //border-radius:10px;
+  
+  background-color: #f8f8f8;
+  //margin:15px 0px 0px 0px;
+  box-shadow:0px 20px 50px rgba(0,0,0,.3);
+  border-radius:4px;
+  transition:0.5s;
+  
+
+
+}
+.card-view .card .info {
+  padding: 15px;
+  width: -webkit-fill-available;
+}
+.card-view .card .info h1 {
+  margin: 0;
+}
+.card-view .card .info h5 {
+  margin: 0;
+}
+.card-view .card .card-button {
+  background: white;
+  border: 0;
+  background: #fc4a1a;
+  position: absolute;
+  color: white;
+  bottom: 0;
+  width: inherit;
+  border-bottom-left-radius: 3px;
+  border-bottom-bottom-radius: 3px;*/
+  padding: 10px;
+}
+/*.list-view {
+  max-width: 1600px;
+  margin: auto;
+  height: 100%;
+}
+.list-view .list {
+  /*overflow: scroll;*/
+ // height: 700px;
+}*/
+.card-view-info {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background: white;
+  bottom: -1000px;
+  left: 0;
+  visibility: hidden;
+  transition: all 0.5s ease-in-out;
+}
+.card-view-info .nav {
+  display: inline-block;
+  float: left;
+  width: 300px;
+}
+.card-view-info .nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.card-view-info .nav ul li {
+  padding: 15px 15px;
+  width: 200px;
+  border: 1px solid gray;
+  text-align: center;
+}
+.card-view-info .info-sect {
+  display: inline-block;
+  float: left;
+  width: calc(100% - 300px);
+}
+/*.active {
+  bottom: 0px;
+  left: 0;
+  visibility: visible;
+}
+
+
+.card h4{
+  color : #8c351d;
+}*/
+
+
+
+
+
+
+* {
+	box-sizing: border-box;
+}
+
+.clear {
+	clear: both;
+}
+
+body {
+	color: #333;
+	display: block;
+	font-family: Open Sans;
+	font-size: 13px;
+	line-height: 1.75em; /*18px;*/
+		-webkit-text-size-adjust: none;
+	margin: 0px;
+	text-rendering: optimizeLegibility;
+}
+
+p {
+	margin-top: 0px;
+	margin-bottom: 18px;
+}
+
+.card{
+  background-color: #f8f8f8;
+  width:245px;//170
+  height:415px;
+  margin:15px 10px 20px 15px;
+  box-shadow:0 20px 50px rgba(0,0,0,.1);
+  border-radius:6px;
+  transition:0.5s;
+  cursor:default;
+}
+
+ .card:hover {
+   // box-shadow:0 30px 70px rgba(0,0,0,.2);
+     box-shadow:5px 5px 5px #84d2ff;
+}
+
+.card-top {
+	color: #fff;
+	font-size: 18px;
+	padding: 15px;
+	//margin: 20px 20px 0 20px;
+  width:100%;
+  text-align:center;
+ border-radius: 6px 6px 0px 0px;
+  font-family: "Oswald", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+}
+
+.card-top-green {
+	background-color:#007CC3;
+}
+
+.card-top-blue {
+		background-color: #0A6CB5;
+}
+
+/*.card-bottom {
+	border-left: 1px solid #ddd;
+	border-right: 1px solid #ddd;
+	border-bottom: 1px solid #ddd;	
+	border-radius: 0 0 4px 4px;
+		-webkit-border-radius: 0 0 4px 4px;
+		-moz-border-radius: 0 0 4px 4px;
+	box-shadow: 0px 1px 4px 0px #eee, 0px 4px 6px -2px #eee;
+		-moz-box-shadow: 0px 1px 4px 0px #eee, 0px 4px 6px -2px #eee;
+    -webkit-box-shadow: 0px 1px 4px 0px #eee, 0px 4px 6px -2px #eee;
+	padding: 15px;
+	//margin: 0 20px 20px 20px;
+  width:100%;
+  height:100%;
+}*/
+
+.topNavColorContainer {
+	background-color: #f8f8f8;
+	box-shadow: 0px 2px 4px #dcddde;
+		-moz-box-shadow: 0px 2px 4px #dcddde;
+		-webkit-box-shadow: 0px 2px 4px #dcddde;
+	display: block;
+	height: auto;
+	margin: 0px auto;
+	width: 100%;
+}
+.row{
+  margin:10px;
+  word-wrap: normal;
+  text-align: center;
+  
+  color:black;
+}
+
+.pb {
+  color: #92d050;
+  height: 30px;
+  width: 20%;
+  border-radius: 5px;
+  margin:0px 40px 0px 40px;
+  background-color: #92d050;
+  box-sizing: border-box;
+}
+.pb span {
+  position: relative;
+  right: 0;
+  padding-left: 105%;
+}
+.row-head{
+  word-wrap: normal;
+  text-align: center;
+  font-size:20px;
+  color:grey;
+  font-weight:normal;
+  margin-top:15px;
+  
+}
+
+.progress-bar-success{
+  background-color: #0961bf;
+  height:100px;
+}
+
+ h4{
+  margin-top:-2px; 
+   color:black;
+   font-size:100%;
+ }
+</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>false</has_preview>
+        <id/>
+        <internal>false</internal>
+        <link/>
+        <name>Esm Gamification Manager_two</name>
+        <option_schema/>
+        <public>true</public>
+        <roles/>
+        <script><![CDATA[(function() {
+  /* populate the 'data' object */
+  /* e.g., data.table = $sp.getValue('table'); */
+	
+	data.login_page = $sp.getValue('login_page');
+	var rank=0;
+	var gr=GlideRecord('u_esmcafe_gamification_table');
+	gr.addQuery('active' , true);
+        data.options = [];
+        gr.orderByDesc('u_points');
+        gr.query();
+        while(gr.next()) {
+					rank++;
+					var name='';
+					var image='';
+					var display;
+					var sysid=gr.getValue('u_user');
+					
+					
+					var gr1=GlideRecord('sys_user');
+					gr1.addQuery('sys_id='+sysid);
+					gr1.query();
+					if(gr1.next())
+						{
+							image=gr1.getValue('photo');
+							name=gr1.getValue('name');
+							display=gr1.getDisplayValue('photo');
+						}
+					
+						if(gr1.getDisplayValue('photo')=='') //to render alternate photo
+							{
+									var gr2=GlideRecord('db_image');
+									gr2.addQuery('sys_id=ca6b4715db7de7000e269334ca961912');
+									gr2.query();
+									if(gr2.next()){
+										display=gr2.getDisplayValue('image');
+									}
+							}
+						
+				
+            data.options.push({ 'id': sysid , 'points': gr.getValue('u_points'), 'levels': gr.getValue('u_level'),'name':name ,'image':display, 'rank':rank});
+        }
+        
+    
+   
+})();
+]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>admin.rahul</sys_created_by>
+        <sys_created_on>2018-11-13 09:23:41</sys_created_on>
+        <sys_id>f0a02d7cdb7567000e269334ca9619df</sys_id>
+        <sys_mod_count>47</sys_mod_count>
+        <sys_name>Esm Gamification Manager_two</sys_name>
+        <sys_package display_value="EsmCafe Gamification" source="db15d177db05230008d749ee3b9619c1">db15d177db05230008d749ee3b9619c1</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="EsmCafe Gamification">db15d177db05230008d749ee3b9619c1</sys_scope>
+        <sys_update_name>sp_widget_f0a02d7cdb7567000e269334ca9619df</sys_update_name>
+        <sys_updated_by>ujwal.kumar@infosys.com</sys_updated_by>
+        <sys_updated_on>2019-06-03 04:11:21</sys_updated_on>
+        <template><![CDATA[<!--<head><link href="https://fonts.googleapis.com/css?family=Mukta+Mahee|Roboto+Slab" rel="stylesheet">
+</head>
+
+  
+
+<div style = "margin-right:-150px"> 
+   <section class="card-view" >
+          <div class="card" ng-repeat="case in data.options">
+            <a href="https://infosysesmcafedev.service-now.com/esmcafe_gamification?id=esmcafe_gamification_two&uid={{case.id}}">     
+            <div class="info" >
+                    <img style="display: inline; border-radius: 50%; overflow: hidden; width: 170px; height: 170px;" class="img-responsive catalog-item-image contain"  alt="IMMMMMGGGGG" ng-src="{{::case.image}}" />
+                   <!--<sn-avatar primary="avatarProfile"  class="avatar-extra-large avatar-container "/>
+                         <br>
+                   			 <p style="font-size:120%;color:#666666;font-weight:bold;margin-top:20px" class="fonts">{{case.name}}</p>
+                   			 <p style="font-size:120%;color:#666666;font-weight:bold;margin-top:10px" class="fonts">Rank {{case.rank}}</p>
+                   <span class="fonts" style="font-size:120%;color:#666666;font-weight:bold;">Points:</span>&nbsp;<span class="fonts" style="font-size:150%;color:black;font-weight:bold;word-wrap: break-word;"> {{case.points}}</span>
+                         <p style="font-size:120%;color:#666666;font-weight:bold;margin-top:10px" class="fonts">{{case.levels}}</p>	
+                   </div>
+           </a>
+              </div>
+    </section>
+
+                        
+</div> -->
+  
+<link href="https://fonts.googleapis.com/css?family=Oswald:600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Oswald:500&display=swap" rel="stylesheet">
+
+<main class="grid">
+
+   <div class="card" ng-repeat="case in data.options">
+        <a href="?id=esmcafe_gamification_two&uid={{case.id}}">     
+
+  <div class="card-top card-top-green" style="color:white; font-size:23px;">Rank&nbsp;:&nbsp;{{case.rank}}</div>
+   <div class="row"> <br>
+    <img style="display: inline; border-radius: 50%; overflow: hidden; width: 150px; height: 150px;" class="img-responsive catalog-item-image contain"  alt="IMMMMMGGGGG" ng-src="{{::case.image}}" >
+    </div>
+  
+   <h2 class="row" style="color:#061838 ;margin-top:20px;font-size:25px;">{{case.name}}</h2>
+  			  
+  		<!--	<h2 class="row-head">System Engineer</h2>-->
+        
+        <!--<h2 class="row-head" style="font-weight:bold; color:#420d50;">Rank:&nbsp;&nbsp;  	
+         <a style="ont-weight:bold;text-decoration: underline;" ng-href="?id=list&table=u_esmcafe_gamification_table&filter=">{{data.points}}</a></h2>
+         <a style="font-weight:bold;text-decoration: underline;" ng-href="?id=list&table=u_esmcafe_gamification_table&filter=">{{case.rank}}</a></h2>
+         <h2 class="row-head" style="font-weight:bold; color:#420d50;">{{data.level}}</h2>-->
+          
+         <h2 class="row-head" style=" color:#061838 ;">Points : {{case.points}}</h2>
+         <h2 class="row-head" style=" color:#061838 ;">{{case.levels}}</h2>
+
+        <br>
+            </a>
+     </div>
+
+<!--  <div class="pb" id="pb"><span id="progress">37%</span></div>-->
+</main>
+ 
+  
+  
+
+]]></template>
+    </sp_widget>
+</record_update>

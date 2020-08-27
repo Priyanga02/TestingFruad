@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_script">
+    <sys_script action="INSERT_OR_UPDATE">
+        <abort_action>false</abort_action>
+        <access>package_private</access>
+        <action_delete>false</action_delete>
+        <action_insert>false</action_insert>
+        <action_query>false</action_query>
+        <action_update>true</action_update>
+        <active>false</active>
+        <add_message>false</add_message>
+        <advanced>true</advanced>
+        <change_fields>false</change_fields>
+        <client_callable>false</client_callable>
+        <collection>incident</collection>
+        <condition/>
+        <description/>
+        <execute_function>false</execute_function>
+        <filter_condition table="incident">calendar_stcISNOTEMPTY^ORstate=6^EQ<item endquery="false" field="calendar_stc" goto="false" newquery="false" operator="ISNOTEMPTY" or="false" value=""/>
+            <item display_value="Resolved" endquery="false" field="state" goto="false" newquery="false" operator="=" or="true" value="6"/>
+            <item endquery="true" field="" goto="false" newquery="false" operator="=" or="false" value=""/>
+        </filter_condition>
+        <is_rest>false</is_rest>
+        <message/>
+        <name>EsmCafe_Game_ResolveTime</name>
+        <order>200</order>
+        <priority>100</priority>
+        <rest_method/>
+        <rest_method_text/>
+        <rest_service/>
+        <rest_service_text/>
+        <rest_variables/>
+        <role_conditions/>
+        <script><![CDATA[(function executeRule(current, previous /*null when async*/) {
+	/****************************/
+	//To calculate the resolve time and insert it into the gamification table.
+	/****************************/
+	
+	//Storing the sysid of Resolution time from Gamification criteria table.
+	var badgeName = '0df8dd3bdb05230008d749ee3b9619f2';
+	//Converting the Resolve time value of Incident into Hours.
+	var ResolveTimeInHours = current.calendar_stc/3600;
+	var gr1 = new GlideRecord('u_gamification_criteria');
+	gr1.addQuery('sys_id',badgeName);
+	gr1.query();
+	if(gr1.next()){
+		
+		//Calculate the point based on Resolve time and insert it into the Gamification table.
+		if(ResolveTimeInHours <= gr1.u_threshold){
+			var gr = new GlideRecord('u_gamification');
+			gr.addQuery('u_badge_names','0df8dd3bdb05230008d749ee3b9619f2');
+			gr.addQuery('u_user',current.assigned_to);
+			gr.query();
+			if(gr.next()){
+				gs.log('insdeif');
+				var totalpoints = parseInt(gr.u_total_points);
+				gr.u_total_points = totalpoints + parseInt(gr1.u_points);
+				gs.log(gr.u_total_points+'gr.u_total_points');
+				gr.update();
+			}else{
+				gs.log('insideelsepart');
+				gr.initialize();
+				gr.u_user = current.assigned_to;
+				gr.u_badge_names = badgeName;
+				//Fetch the point value from Gamification criteria table.
+				gr.u_total_points = gr1.u_points;
+			//	gr.u_incident_number = current.number;
+				gr.insert();
+			}
+		}
+	}
+	
+})(current, previous);]]></script>
+        <sys_class_name>sys_script</sys_class_name>
+        <sys_created_by>admin.suganya</sys_created_by>
+        <sys_created_on>2018-10-17 06:45:30</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>879ca1c0dbd1630008d749ee3b961976</sys_id>
+        <sys_mod_count>34</sys_mod_count>
+        <sys_name>EsmCafe_Game_ResolveTime</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="EsmCafe Gamification" source="db15d177db05230008d749ee3b9619c1">db15d177db05230008d749ee3b9619c1</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="EsmCafe Gamification">db15d177db05230008d749ee3b9619c1</sys_scope>
+        <sys_update_name>sys_script_879ca1c0dbd1630008d749ee3b961976</sys_update_name>
+        <sys_updated_by>vikas.patel@infosys.com</sys_updated_by>
+        <sys_updated_on>2019-05-07 07:11:05</sys_updated_on>
+        <template/>
+        <when>after</when>
+    </sys_script>
+    <sys_translated_text action="delete_multiple" query="documentkey=879ca1c0dbd1630008d749ee3b961976"/>
+</record_update>

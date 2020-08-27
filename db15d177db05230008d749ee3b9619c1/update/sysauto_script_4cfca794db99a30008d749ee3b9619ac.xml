@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sysauto_script">
+    <sysauto_script action="INSERT_OR_UPDATE">
+        <active>false</active>
+        <business_calendar/>
+        <condition/>
+        <conditional>false</conditional>
+        <entered_time/>
+        <name>EsmCafe_Gamification_NumberOfCall</name>
+        <offset/>
+        <offset_type>0</offset_type>
+        <run_as display_value="">96ed3b84db242300d82a49ee3b961956</run_as>
+        <run_as_tz/>
+        <run_dayofmonth>1</run_dayofmonth>
+        <run_dayofweek>1</run_dayofweek>
+        <run_period/>
+        <run_start>2018-10-18 09:48:19</run_start>
+        <run_time>1970-01-02 02:00:00</run_time>
+        <run_type>daily</run_type>
+        <script><![CDATA[var count = new GlideAggregate('incident');
+
+//query to find incidents which are resolved today
+count.addEncodedQuery('state=6^resolved_atONToday@javascript:gs.beginningOfToday()@javascript:gs.endOfToday()^assignment_group.typeLIKEb635c8c8db21ef000e269334ca9619fa');
+//grouping number of incidents resolved by the agent and his/her name
+count.addAggregate('COUNT','resolved_by');
+count.query();
+//Badge name here is the criteria name - Number of calls in a day
+var badgeName = '01e8d17bdb05230008d749ee3b96195e';
+var grr = new GlideRecord('u_gamification_criteria');
+grr.addQuery('sys_id',badgeName);
+grr.query();
+
+if(grr.next()){
+	
+while(count.next()){
+  var resolvedby = count.resolved_by;
+  var resolvedCount = count.getAggregate('COUNT','resolved_by');
+  var rc = parseFloat(resolvedCount);
+	var gr1 = new GlideRecord('u_gamification');
+	// To check whether the logged in user is the resolved by and the criteria is Number of calls in a day
+	gr1.addEncodedQuery('u_user='+resolvedby+'^u_badge_names=01e8d17bdb05230008d749ee3b96195e');
+	gr1.query();
+	// To verify the thresold value with the resolved count of number of calls
+	if(rc >= parseFloat(grr.u_threshold)){
+		var excess_incidents= rc - parseFloat(grr.u_threshold);
+		//gs.log("****ex_in"+excess_incidents);
+		if(gr1.getRowCount()!=0){
+			//Update the record in leaderboard table if its already present
+			if(gr1.next()){
+				// To provide extra points to service desk agent if there are calls answered more than the required threshold 
+				gr1.u_total_points=parseFloat(gr1.u_total_points)+parseFloat(grr.u_points) + excess_incidents/2;
+				gr1.update();	
+			 }
+		}
+		else{// TO insert a record in leaderboard table if there is no existing record in leaderboard table
+			var gr = new GlideRecord('u_gamification');
+			gr.initialize();
+			//gs.log("****new points"+grr.u_points);
+			gr.u_user = resolvedby;	
+			// To provide extra points to service desk agent if there are calls answered more than the required threshold 
+			gr.u_total_points=parseFloat(grr.u_points) + excess_incidents/2;
+			gr.u_badge_names=badgeName;
+			gr.insert();	
+		}
+	}	
+ }
+	
+}
+]]></script>
+        <sys_class_name>sysauto_script</sys_class_name>
+        <sys_created_by>admin.vikas</sys_created_by>
+        <sys_created_on>2018-10-18 10:06:27</sys_created_on>
+        <sys_id>4cfca794db99a30008d749ee3b9619ac</sys_id>
+        <sys_mod_count>46</sys_mod_count>
+        <sys_name>EsmCafe_Gamification_NumberOfCall</sys_name>
+        <sys_package display_value="EsmCafe Gamification" source="db15d177db05230008d749ee3b9619c1">db15d177db05230008d749ee3b9619c1</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="EsmCafe Gamification">db15d177db05230008d749ee3b9619c1</sys_scope>
+        <sys_update_name>sysauto_script_4cfca794db99a30008d749ee3b9619ac</sys_update_name>
+        <sys_updated_by>vikas.patel@infosys.com</sys_updated_by>
+        <sys_updated_on>2019-05-07 07:11:46</sys_updated_on>
+        <time_zone/>
+        <upgrade_safe>false</upgrade_safe>
+    </sysauto_script>
+</record_update>

@@ -1,0 +1,424 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[function ($rootScope, $scope, snRecordWatcher, spUtil, $location, $uibModal, cabrillo, $timeout, $window) {
+	
+	 //$scope.role=g_user.hasRoleExactly('gamification_admin');
+
+	
+	$scope.avatarProfile = {
+		userID: $scope.user.sys_id,
+		name: $scope.user.name,
+		initials: $window.NOW.user_initials
+	};
+	
+	if ($window.NOW.user_avatar) {
+		$scope.avatarProfile.userImage = $window.NOW.user_avatar;
+	}
+	
+	if (cabrillo.isNative())
+		$scope.isViewNative = true;
+	
+	$scope.openPopUp = function() {
+		var url = "$chat_support.do?queueID=" + $scope.data.connect_support_queue_id;
+		var popup = window.open (url, "popup", "width=900, height=600");
+	};
+	
+	$scope.openLogin = function () {
+		$scope.modalInstance = $uibModal.open({
+			templateUrl: 'modalLogin',
+			scope: $scope
+		});
+	};
+	
+	var xsScreenSize = isXSScreenSize();
+	$scope.showXSAvatar = isXSScreenSize();
+	$scope.showAvatar = !isXSScreenSize();
+	
+	angular.element($window).on('resize', function () {
+		if(xsScreenSize !== isXSScreenSize() && (!$scope.showXSAvatar || !$scope.showAvatar)){
+			$scope.showXSAvatar = true;
+			$scope.showAvatar = true;
+		}
+	});
+	
+	
+	function isXSScreenSize() {
+		return $window.matchMedia('(max-width: 767px)').matches;
+	}
+	
+	$rootScope.$on('sp.avatar_changed', function() {
+		$scope.userID = "";
+		$timeout(function(){
+			$scope.userID = $scope.user.sys_id;
+		});
+	});
+	
+	$scope.isHomepage = function() {
+		if (!$scope.page.id)
+			return true;
+		
+		if ($scope.page.id == $scope.portal.homepage_dv)
+			return true;
+		
+		return false;
+	};
+	
+// 	function($uibModal, $scope) {
+// 		alert('test');
+		//$scope.favVisible = true;
+		var c = this;
+		c.openModal = function() {
+		
+			c.modalInstance = $uibModal.open({
+				templateUrl: 'modalTemplate',
+				scope: $scope
+			});
+		};
+		c.closeModal = function() {
+
+			c.modalInstance.close();
+		};
+		
+	var progress = document.getElementById('progress').innerHTML;
+document.getElementById("pb").style.width = progress;
+}
+
+
+]]></client_script>
+        <controller_as>c</controller_as>
+        <css>body {
+    margin:0;
+    padding:0;
+    font-family:sans-serif;
+    background:#fbfbfb;
+}
+.card {
+    @media (max-width: 700px) {
+	   width: 100%;
+	   }
+    position:relative;
+    top:50%;
+    left:50%;
+    transform:translate(-35%,5%);
+    width:300px;//250
+    height:581px;
+    background:#fff;
+    box-shadow:0 20px 50px rgba(0,0,0,.1);
+    border-radius:10px;
+    transition:0.5s;
+}
+.card:hover {
+    box-shadow:0 30px 70px rgba(0,0,0,.2);
+}
+.card .box {
+    position:relative;
+    top:50%;
+    left:0;
+    transform:translateY(-50%);
+    text-align:center;
+    padding:20px;
+    box-sizing:border-box;
+    width:100%;
+}
+.card .box .img {
+    width:120px;
+    height:120px;
+    margin:0 auto;
+    border-radius:50%;
+    overflow:hidden;
+}
+.card .box .img img {
+    width:100%;
+    height:100%;
+}
+.card .box h2 {
+    font-size:20px;
+    color:#262626;
+    margin:20px auto;
+}
+.card .box h2 span {
+    font-size:14px;
+    font-family: "Times New Roman", Times, serif;
+    font-weight:bolder;
+    background:#e91e63;
+    color:#fff;
+    display:inline-block;
+    padding:4px 10px;
+    border-radius:15px;
+}
+.card .box p {
+    color:#262626;
+}
+.card .box span {
+    display:inline-flex;
+}
+.card .box ul {
+    margin:0;
+    padding:0;
+}
+.card .box ul li {
+    list-style:none;
+    float:left;
+}
+.card .box ul li a {
+    display:block;
+    color:#aaa;
+    margin:0 10px;
+    font-size:20px;
+    transition:0.5s;
+    text-align:center;
+}
+.card .box ul li:hover a {
+    color:#e91e63;
+    transform:rotateY(360deg);
+}
+.cont {
+  height: 30px;
+  width: 315px;
+  border-radius: 7px;
+  border: 1px solid white;
+}
+.pb {
+  color: #92d050;
+  height: 30px;
+  width: 20%;
+  border-radius: 5px;
+  margin:0px 10px 0px 10px;
+  background-color: #92d050;
+  box-sizing: border-box;
+}
+.pb span {
+  position: relative;
+  right: 0;
+  padding-left: 105%;
+}
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Baloo Tamma', cursive;
+  width: 100vw;
+  height: 90vh;
+  margin: 0;
+  background-color: #92d050;
+  color: green;
+}</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>false</has_preview>
+        <id>gamification_agentphoto_widget</id>
+        <internal>false</internal>
+        <link/>
+        <name>gamification_agentPhoto_widget</name>
+        <option_schema/>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[// Defines the support queue ID that will be linked to by the Live Chat link in header
+data.connect_support_queue_id = $sp.getValue('sp_chat_queue');
+data.role=gs.getSession().getRoles().includes('gamification_admin');
+//data.role= gs.hasRole('gamification_admin');
+data.login_page = $sp.getValue('login_page');
+data.profileBtnMsg = gs.getMessage("User options");
+var menu = $sp.getValue("sp_rectangle_menu");
+data.menu = $sp.getWidgetFromInstance(menu);
+data.points=0;
+if (data.menu && data.menu.data) {
+	data.menu.data.replace = true;
+	// Hide login if menu already has link to login
+	data.hasLogin = false;
+	if (data.menu.data.menu.items) {
+		for(var i in data.menu.data.menu.items) {
+			var item = data.menu.data.menu.items[i];
+			if (item.type == 'page' && item.sp_page == data.login_page)
+				data.hasLogin = true;
+		}
+	}
+}
+
+var grr = new GlideRecord('u_esmcafe_gamification_table');
+grr.addQuery('u_user', gs.getUserID());
+grr.query();
+if(grr.next()){
+	data.points=grr.getValue('u_points');
+	data.level=grr.getValue('u_level');
+		}
+
+ var gp = new GlideRecord('u_esmcafe_gamification_table');
+ gp.addQuery('active',true);
+ var userId=gs.getUserID();
+ gp.orderByDesc('u_points');
+ gp.query();
+ data.rank=0;
+ while(gp.next()){
+	 data.rank=data.rank+1;
+	 if(gp.u_user == userId){
+		 break;
+	 }
+ }
+//gs.log("***rank "+data.rank+" ***** "+gp.u_user);
+/*var gq = new GlideRecord('sys_user');
+gq.addQuery('user_name', gs.getUserID());
+gq.query();
+if(gq.next()){
+	data.photo=grr.getValue('photo');
+		}
+
+ populate the 'data' object
+ e.g., data.table = $sp.getValue('table');
+data.sysUserID = $sp.getParameter("sys_id");
+if (!data.sysUserID)
+	data.sysUserID = gs.getUser().getID();
+var sysUserGR = new GlideRecord("sys_user");
+data.userExists = sysUserGR.get(data.sysUserID) && sysUserGR.canRead();
+
+if (data.userExists) {
+	data.name = sysUserGR.getValue("name");
+	var loggedInSysUserID = gs.getUser().getID();
+	data.connectEnabled = GlidePluginManager().isActive('com.glide.connect');
+	data.liveProfileID = "";
+
+	//get live profile id for sending connect messages
+	if (GlidePluginManager().isActive('com.glideapp.live_common')) {
+		var liveProfileGR = new GlideRecord("live_profile");
+		liveProfileGR.addQuery("document", data.sysUserID);
+		liveProfileGR.query();
+		if (liveProfileGR.next()) {
+			data.liveProfileID = liveProfileGR.getValue("sys_id");
+			data.liveProfileModel = $sp.getForm("live_profile", data.liveProfileID)._fields;
+		} else
+			data.connectEnabled = false; //can't find a live profile for this user, so lets not integrate Connect
+	}
+
+	data.isLoggedInUsersProfile = loggedInSysUserID.equals(data.sysUserID);
+	var sysUserForm = $sp.getForm("sys_user", data.sysUserID);
+	data.sysUserView = sysUserForm._view;
+	data.sysUserModel = sysUserForm._fields;
+	data.sysUserModelList = [];
+
+	for (var i = 0; i < data.sysUserView.length; i++) {
+		data.sysUserModelList.push(data.sysUserModel[data.sysUserView[i].name]);
+	}
+
+	data.directReports = [];
+	data.teamData = {};
+	data.teamData.direct_reports = [];
+	data.teamData.members = [];
+
+	if (!data.isLoggedInUsersProfile) {
+		data.teamData.user = {
+			sys_id: data.sysUserID
+		}
+	}
+
+	//Calculate manager
+	var managerGR = new GlideRecord("sys_user");
+	if (managerGR.get(sysUserGR.getValue("manager"))) {
+		data.teamData.manager = buildUser(managerGR);
+	}
+
+	//Calculate team
+	if (data.teamData.manager) {
+		var teamGR = new GlideRecord("sys_user");
+		teamGR.addActiveQuery();
+		teamGR.addQuery("manager", data.teamData.manager.sys_id);
+		teamGR.query();
+		while(teamGR.next()) {
+			if (!teamGR.getValue("sys_id").equals(data.sysUserID))
+				data.teamData.members.push(buildUser(teamGR));
+		}
+	}
+
+	//Calculate direct reports
+	var directReportGR = new GlideRecord("sys_user");
+	directReportGR.addActiveQuery();
+	directReportGR.addQuery("manager", data.sysUserID);
+	directReportGR.query();
+
+	while(directReportGR.next())
+		data.teamData.direct_reports.push(buildUser(directReportGR));
+
+	data.teamWidget = $sp.getWidget('sp-my-team', {glyph: 'user', color: 'primary'});
+
+	//get state preferences
+	data.preferencesEnabled = getPreferencesEnabled();
+
+	//get the user Preferences of the user
+	data.userPreferences = getUserPreferences(data.sysUserID);
+}
+
+function buildUser(userGR) {
+	return {
+		email: userGR.getValue("email") || "",
+		first_name: userGR.getValue("first_name"),
+		last_name: userGR.getValue("last_name"),
+		name: userGR.getValue("name"),
+		phone: userGR.getValue("phone") || "",
+		sys_id: userGR.getValue("sys_id")
+	}
+}
+
+// returns the user preferences from the platform
+function getUserPreferences(userID){
+	var user = GlideUser.getUserByID(userID);
+	return {
+		accessibility: {
+			key: 'glide.ui.accessibility',
+			value: user.getPreference('glide.ui.accessibility') == 'true'
+		}
+	}
+}
+
+// read the proper state so we can show/hide preferences in the preferences table
+function getPreferencesEnabled(){
+	return {
+		// show preferences only if the sys_id of the url is the same user that is logged on
+		preferencesPanelEnabled : GlideStringUtil.nil($sp.getParameter('sys_id')) || $sp.getParameter('sys_id') == gs.getUserID(),
+
+		//certain properties are visible in some cases
+		languageEnabled : pm.isActive('com.glide.i18n') && gs.getProperty('glide.ui.language_picker.enabled', 'true') == 'true',
+		timezoneEnabled: gs.hasRole(gs.getProperty('glide.timezone_changer.roles'))
+	}
+}*/
+
+]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>admin.vikas</sys_created_by>
+        <sys_created_on>2018-10-30 10:49:03</sys_created_on>
+        <sys_id>ddbd251cdb6523400e269334ca9619d5</sys_id>
+        <sys_mod_count>192</sys_mod_count>
+        <sys_name>gamification_agentPhoto_widget</sys_name>
+        <sys_package display_value="EsmCafe Gamification" source="db15d177db05230008d749ee3b9619c1">db15d177db05230008d749ee3b9619c1</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="EsmCafe Gamification">db15d177db05230008d749ee3b9619c1</sys_scope>
+        <sys_update_name>sp_widget_ddbd251cdb6523400e269334ca9619d5</sys_update_name>
+        <sys_updated_by>admin.vikas</sys_updated_by>
+        <sys_updated_on>2018-11-06 09:12:07</sys_updated_on>
+        <template><![CDATA[<div class="card">
+    <div class="box">
+        <div >
+            <sn-avatar primary="avatarProfile"  class="avatar-extra-large avatar-container"/>
+        </div>
+       
+       <!-- <div class="img" >
+            <center><img src="/{{data.photo}.iix" alt="Profile Image" height="200"></center>
+        </div>-->
+      
+        <h2 style="font-size:160%;">{{::user.name}}<br><br><span>SYSTEM ENGINEER</span></h2>
+        
+        <h4 style="font-size:140%;">My Points:&nbsp;&nbsp;  	
+        <a style="font-size:130%;text-decoration: underline;" ng-href="?id=list&table=u_esmcafe_gamification_table&filter=">{{data.points}}</a></h4>
+
+        <h4 style="font-size:140%; margin:2px">{{data.level}}</h4>
+        <h4 style="font-size:140%; margin:20px">Rank : {{data.rank}}</h4>
+        <br>
+       <div class="pb" id="pb"><span id="progress">37%</span></div>
+     
+</div>]]></template>
+    </sp_widget>
+</record_update>

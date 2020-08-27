@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sysauto_script">
+    <sysauto_script action="INSERT_OR_UPDATE">
+        <active>false</active>
+        <business_calendar/>
+        <condition/>
+        <conditional>false</conditional>
+        <entered_time/>
+        <name>EsmCafe_Game_LeaderBoard</name>
+        <offset/>
+        <offset_type>0</offset_type>
+        <run_as display_value="">dad205580fcd63003199563be1050e06</run_as>
+        <run_as_tz/>
+        <run_dayofmonth>1</run_dayofmonth>
+        <run_dayofweek>1</run_dayofweek>
+        <run_period/>
+        <run_start>2018-10-18 04:48:09</run_start>
+        <run_time>1970-01-01 20:00:00</run_time>
+        <run_type>daily</run_type>
+        <script><![CDATA[/*************************/
+//This scheduled job inserts record into leaderboard table based ont he points the user earned in gamificationtable.
+/*************************/
+
+//Deletes the record in leaderboard table initially to avoid duplication of records.
+var gr1 = new GlideRecord('u_esmcafe_gamification_table');
+gr1.query();
+while(gr1.next()){
+	gr1.deleteMultiple();
+}
+
+//Queries the gamification table to fetch the records by grouping the user and adding the points gained by the user.
+	
+var rec = new GlideAggregate('u_gamification');
+rec.groupBy('u_user');
+rec.addAggregate('SUM','u_total_points');
+rec.query();
+	
+while(rec.next()){
+	var count = rec.getAggregate('SUM','u_total_points');
+	//Inserts the record into leadership table.
+	var gr1 = new GlideRecord('u_esmcafe_gamification_table');
+	gr1.initialize();
+	
+	var x='';
+	var y=parseInt(count);
+	// Populate the level value in Leaderboard table as per the gamification level table's threshold value.
+	var grr = new GlideRecord('u_gamification_level'); 
+    grr.orderByDesc('u_level');
+	grr.addActiveQuery();
+ 	grr.query();
+	
+	while(grr.next()){
+	var point= parseInt(grr.u_point);
+	if (y<=point) {
+		x=grr.getValue('u_level');
+ 	}	
+	}	
+	gr1.u_level=x;
+	gr1.u_user = rec.u_user;
+	gr1.u_points = count;
+	gr1.insert();
+	
+}
+]]></script>
+        <sys_class_name>sysauto_script</sys_class_name>
+        <sys_created_by>admin.suganya</sys_created_by>
+        <sys_created_on>2018-10-18 04:50:21</sys_created_on>
+        <sys_id>5738ee18db15a30008d749ee3b96191f</sys_id>
+        <sys_mod_count>66</sys_mod_count>
+        <sys_name>EsmCafe_Game_LeaderBoard</sys_name>
+        <sys_package display_value="EsmCafe Gamification" source="db15d177db05230008d749ee3b9619c1">db15d177db05230008d749ee3b9619c1</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="EsmCafe Gamification">db15d177db05230008d749ee3b9619c1</sys_scope>
+        <sys_update_name>sysauto_script_5738ee18db15a30008d749ee3b96191f</sys_update_name>
+        <sys_updated_by>vikas.patel@infosys.com</sys_updated_by>
+        <sys_updated_on>2019-05-07 07:11:50</sys_updated_on>
+        <time_zone/>
+        <upgrade_safe>false</upgrade_safe>
+    </sysauto_script>
+</record_update>

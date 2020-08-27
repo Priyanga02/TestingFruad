@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_page">
+    <sp_page action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <css>body {&#13;
+ background-color:	#D3EFFF;&#13;
+ background-repeat: no-repeat; background-size: cover;&#13;
+ display: flex;&#13;
+}&#13;
+&#13;
+/*.appStoreContent{&#13;
+  /* this will be the styling for container which includes 'App Store Main Content' widget*/ &#13;
+  /*padding-left : 0px;&#13;
+  padding-right : 0px;&#13;
+ background-image: url("bg2.jpg");&#13;
+}*/</css>
+        <draft>false</draft>
+        <dynamic_title_structure/>
+        <id>esm_gamification_manager</id>
+        <internal>false</internal>
+        <omit_watcher>false</omit_watcher>
+        <public>false</public>
+        <roles/>
+        <seo_script/>
+        <short_description/>
+        <sys_class_name>sp_page</sys_class_name>
+        <sys_created_by>admin.vikas</sys_created_by>
+        <sys_created_on>2018-11-06 05:43:49</sys_created_on>
+        <sys_id>3afae8aedbe5e70008d749ee3b961929</sys_id>
+        <sys_mod_count>36</sys_mod_count>
+        <sys_name>esm_gamification_manager</sys_name>
+        <sys_package display_value="EsmCafe Gamification" source="db15d177db05230008d749ee3b9619c1">db15d177db05230008d749ee3b9619c1</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="EsmCafe Gamification">db15d177db05230008d749ee3b9619c1</sys_scope>
+        <sys_update_name>sp_page_3afae8aedbe5e70008d749ee3b961929</sys_update_name>
+        <sys_updated_by>ujwal.kumar@infosys.com</sys_updated_by>
+        <sys_updated_on>2019-05-31 11:12:26</sys_updated_on>
+        <title>esm gamification manager</title>
+        <use_seo_script>false</use_seo_script>
+    </sp_page>
+    <sys_translated_text action="delete_multiple" query="documentkey=3afae8aedbe5e70008d749ee3b961929"/>
+</record_update>

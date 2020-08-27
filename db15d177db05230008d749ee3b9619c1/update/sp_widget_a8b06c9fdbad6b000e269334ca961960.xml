@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[function() {
+  /* widget controller */
+  var c = this;
+}]]></client_script>
+        <controller_as>c</controller_as>
+        <css>* {
+	box-sizing: border-box;
+}
+
+.clear {
+	clear: both;
+}
+img{
+  display: inline; border-radius: 50%; overflow: hidden; width: 200px; height: 200px;
+}
+body {
+	color: #333;
+	display: block;
+	//font-family: Open Sans;
+	font-size: 13px;
+	line-height: 1.75em; /*18px;*/
+		-webkit-text-size-adjust: none;
+	margin: 0px;
+	text-rendering: optimizeLegibility;
+}
+
+p {
+	margin-top: 0px;
+	margin-bottom: 18px;
+}
+h2
+{
+  font-family: 'Oswald', sans-serif;
+  	font-weight:500;
+  	font-style:normal;
+}
+a
+{
+  font-family: 'Oswald', sans-serif;
+  	font-weight:500;
+  	font-style:normal;
+}
+.card{
+  background-color: #f8f8f8;
+  width:275px;//170
+  height:600px;
+  margin:15px 10px 20px 15px;
+  box-shadow:0 20px 50px rgba(0,0,0,.1);
+  border-radius:6px;
+  transition:0.5s;
+  cursor:default;
+  font-family: 'Oswald', sans-serif;
+  font-weight:600;
+  font-style:normal;
+}
+
+ .card:hover {
+   // box-shadow:0 30px 70px rgba(0,0,0,.2);
+     box-shadow:5px 5px 5px #84d2ff;
+}
+
+.card-top {
+	color: #fff;
+	font-size: 18px;
+	padding: 15px;
+	//margin: 20px 20px 0 20px;
+  width:100%;
+  text-align:center;
+ border-radius: 6px 6px 0px 0px;
+}
+
+.card-top-green {
+  background:#007CC3;
+	//background-color:#0e8a7d;
+  //background: #cc2b5e;  /* fallback for old browsers */
+	//background: -webkit-linear-gradient(to right, #753a88, #cc2b5e);  /* Chrome 10-25, Safari 5.1-6 */
+	//background: linear-gradient(to right, #753a88, #cc2b5e); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+
+.card-top-blue {
+		background-color: #0A6CB5;
+}
+
+/*.card-bottom {
+	border-left: 1px solid #ddd;
+	border-right: 1px solid #ddd;
+	border-bottom: 1px solid #ddd;	
+	border-radius: 0 0 4px 4px;
+		-webkit-border-radius: 0 0 4px 4px;
+		-moz-border-radius: 0 0 4px 4px;
+	box-shadow: 0px 1px 4px 0px #eee, 0px 4px 6px -2px #eee;
+		-moz-box-shadow: 0px 1px 4px 0px #eee, 0px 4px 6px -2px #eee;
+    -webkit-box-shadow: 0px 1px 4px 0px #eee, 0px 4px 6px -2px #eee;
+	padding: 15px;
+	//margin: 0 20px 20px 20px;
+  width:100%;
+  height:100%;
+}*/
+
+.topNavColorContainer {
+	background-color: #f8f8f8;
+	box-shadow: 0px 2px 4px #dcddde;
+		-moz-box-shadow: 0px 2px 4px #dcddde;
+		-webkit-box-shadow: 0px 2px 4px #dcddde;
+	display: block;
+	height: auto;
+	margin: 0px auto;
+	width: 100%;
+}
+.row{
+  margin:10px;
+  word-wrap: normal;
+  text-align: center;
+ 
+  color:black;
+}
+
+.pb {
+  color: #92d050;
+  height: 30px;
+  width: 20%;
+  border-radius: 5px;
+  margin:0px 40px 0px 40px;
+  background-color: #92d050;
+  box-sizing: border-box;
+}
+.pb span {
+  position: relative;
+  right: 0;
+  padding-left: 105%;
+}
+.row-head{
+  word-wrap: normal;
+  text-align: center;
+  font-size:22px;
+  color:grey;
+  margin-top:15px;
+  
+}
+
+.progress-bar-success{
+  background-color: #0961bf;
+  height:100px;
+}
+
+ h4{
+  margin-top:-2px; 
+   color:black;
+   font-size:100%;
+ }
+
+.row-head1{
+  font-size:120%;
+  text-align:center;
+}
+@media screen and (min-width:2560px){
+  .card{
+    height:1320px;
+    width: 500px;
+    margin-left: -490px;
+  }
+  .contain{
+    margin-top:100px;
+    //padding-top:100px;
+    
+  }
+  img{
+    height:400px;
+    width:400px;
+  }
+  h2{
+   font-size:40px;
+  }
+  .row-head{
+    
+    font-size:35px;
+  }
+  .row-head a{
+    font-size:35px;
+  }
+  .card-top-green{
+    height:80px;
+  }
+  .row-head1{
+  font-size:35px;
+  text-align:center;
+}
+  .card-top
+{
+  font-size:35px;
+}
+}
+</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>false</has_preview>
+        <id/>
+        <internal>false</internal>
+        <link/>
+        <name>ESM Gamification Agent_Photo</name>
+        <option_schema/>
+        <public>true</public>
+        <roles/>
+        <script><![CDATA[(function(){
+	//To getch the logged in user's profile pic
+	data.picture='';
+	data.role= (gs.hasRole('gamification_admin')||gs.hasRole('itil'));
+  var gr01 = new GlideRecord('sys_user');
+	gr01.addActiveQuery();
+	gr01.addQuery('sys_id',gs.getUserID());
+	gr01.query();
+	if(gr01.next()){
+		data.picture=gr01.getDisplayValue('photo');
+	}
+	if(data.picture=='')
+		{
+			var gr2=GlideRecord('db_image');
+					gr2.addQuery('sys_id=ca6b4715db7de7000e269334ca961912');
+					gr2.query();
+					if(gr2.next()){
+					data.picture=gr2.getDisplayValue('image');
+					}
+		}
+//To calculate the rank of logged in user	
+var grr = new GlideRecord('u_esmcafe_gamification_table');
+grr.addQuery('u_user', gs.getUserID());
+grr.query();
+if(grr.next()){
+	data.points=grr.getValue('u_points');
+	data.level=grr.getValue('u_level');
+		}
+
+ var gp = new GlideRecord('u_esmcafe_gamification_table');
+ gp.addQuery('active',true);
+ var userId=gs.getUserID();
+ gp.orderByDesc('u_points');
+ gp.query();
+ data.rank=0;
+ while(gp.next()){
+	 data.rank=data.rank+1;
+	 if(gp.u_user == userId){
+		 break;
+	 }
+ }
+	var gr = new GlideRecord('u_esmcafe_gamification_table');
+gr.addQuery('u_user',gs.getUserID());
+gr.query();
+if(gr.next()){
+data.points = gr.getDisplayValue('u_points');
+	
+data.level = gr.getDisplayValue('u_level');
+}
+	//If logged in user doesnt have any points then the rank is N/A.
+	if(typeof data.points=='undefined')
+		{
+			data.points=0;
+			data.rank="N/A";
+		}
+// To display the progress to next level
+var gr4 = new GlideRecord('u_esmcafe_gamification_table');
+gr4.addQuery('u_user',gs.getUserID());// Get logged in user
+gr4.query();
+if(gr4.next()){
+data.point = gr4.u_points;// fetch logged in user's current points
+data.level1 = gr4.u_level;//fetch logged in user's current level
+	
+var gr1 = new GlideRecord('u_gamification_level'); // Query on Level table
+gr1.addQuery('u_level',data.level1);
+gr1.query();
+if(gr1.next()){
+data.pointget = gr1.u_point; 
+data.rest = data.pointget - data.point;// Find the difference between Level table points and currrent points of user
+	data.finalval = 100-data.rest;// To get the completed percentage subtract with 100
+	
+}
+}else{ // If there are no records in Gamification table for logged in user set the progress to zero.
+	data.finalval = 0;
+	console.log('else');
+}
+	
+		data.badgename = [];
+	//To display the badge icon in the profile
+	var gr3 = new GlideRecord('u_gamification');
+	gr3.addQuery('u_user',gs.getUserID());
+	gr3.addNotNullQuery('u_badge_icon');
+	gr3.query();
+	while(gr3.next()){
+	data.badgename.push(gr3.getDisplayValue('u_badge_icon'));
+	}
+	
+})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>admin.suganya</sys_created_by>
+        <sys_created_on>2018-11-08 12:53:44</sys_created_on>
+        <sys_id>a8b06c9fdbad6b000e269334ca961960</sys_id>
+        <sys_mod_count>221</sys_mod_count>
+        <sys_name>ESM Gamification Agent_Photo</sys_name>
+        <sys_package display_value="EsmCafe Gamification" source="db15d177db05230008d749ee3b9619c1">db15d177db05230008d749ee3b9619c1</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="EsmCafe Gamification">db15d177db05230008d749ee3b9619c1</sys_scope>
+        <sys_update_name>sp_widget_a8b06c9fdbad6b000e269334ca961960</sys_update_name>
+        <sys_updated_by>ujwal.kumar@infosys.com</sys_updated_by>
+        <sys_updated_on>2019-06-03 04:13:11</sys_updated_on>
+        <template><![CDATA[<!--<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600" rel="stylesheet" type="text/css">-->
+<link href="https://fonts.googleapis.com/css?family=Oswald:600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Roboto:500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Oswald:500&display=swap" rel="stylesheet">
+<div class="card">
+  
+  <div class="card-top card-top-green" >PROFILE</div>
+   <div class="row"> <br>
+     <!--To display the profile picture, name, Level, Rank of the logged in user -->
+    <img  class="img-responsive catalog-item-image contain"  alt="IMMMMMGGGGG" src="{{::data.picture}}" >
+    </div>
+  
+   <h2 class="row" style="color:#061838;margin-top:20px;">{{::user.name}}</h2>
+  			  
+  		<!--	<h2 class="row-head">System Engineer</h2>-->
+        
+        <h2 class="row-head" style=" color:#061838;" ng-if="data.role">My Points:&nbsp;&nbsp;  	
+        <a style="text-decoration: underline;font-size:25px;" ng-href="?id=list&table=u_gamification&filter=u_userDYNAMIC90d1921e5f510100a9ad2572f2b477fe">{{data.points}}</a></h2>
+        
+        <h2 class="row-head" style=" color:#061838;" ng-if="!data.role">My Points:&nbsp;&nbsp;  	
+        <a style="text-decoration: underline;font-size:25px;">{{data.points}}</a></h2>
+  
+        <h2 class="row-head" style=" color:#061838;">{{data.level}}</h2>
+        <h2 class="row-head" style="color:#061838;">Rank : {{data.rank}}</h2>
+        <br>
+<!--  <div class="pb" id="pb"><span id="progress">37%</span></div>-->
+  
+  <!-- To display the progress to next level of the logged in user-->
+  <div class="progress">
+  <div class="progress-bar progress-bar-striped progress-bar-success active" role="progressbar"
+  aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:{{data.finalval}}%;height:300%" >
+<!--<h4>{{data.finaldiff}}% complete</h4>-->
+    <span class="sr-only">{{data.finalval}}% Complete</span>
+    
+  </div>
+  <span class="sr-only">{{data.finalval}}% Complete</span>
+  </div>
+   <h2 class="row-head1" style="font-family: 'Roboto', sans-serif; font-style:normal; font-weight:500;" >Your progress to next level is {{data.finalval}}% complete</h2>
+  <br> 
+ </div>
+  
+  
+
+]]></template>
+    </sp_widget>
+</record_update>

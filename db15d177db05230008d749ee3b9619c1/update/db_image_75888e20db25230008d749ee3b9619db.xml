@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="db_image">
+    <db_image action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <category>Service Portal</category>
+        <format>JPEG</format>
+        <height>720</height>
+        <image>e5a84eecdbe1230008d749ee3b96190f</image>
+        <name>black.jpg</name>
+        <size_bytes>15027</size_bytes>
+        <sys_class_name>db_image</sys_class_name>
+        <sys_created_by>admin.suganya</sys_created_by>
+        <sys_created_on>2018-10-31 07:23:59</sys_created_on>
+        <sys_id>75888e20db25230008d749ee3b9619db</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name>black.jpg</sys_name>
+        <sys_package display_value="EsmCafe Gamification" source="db15d177db05230008d749ee3b9619c1">db15d177db05230008d749ee3b9619c1</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="EsmCafe Gamification">db15d177db05230008d749ee3b9619c1</sys_scope>
+        <sys_update_name>db_image_75888e20db25230008d749ee3b9619db</sys_update_name>
+        <sys_updated_by>admin.suganya</sys_updated_by>
+        <sys_updated_on>2018-10-31 07:24:19</sys_updated_on>
+        <thumbnail/>
+        <width>1280</width>
+    </db_image>
+    <sys_attachment action="INSERT_OR_UPDATE">
+        <average_image_color>#0</average_image_color>
+        <chunk_size_bytes>734003</chunk_size_bytes>
+        <compressed>true</compressed>
+        <content_type>image/jpeg</content_type>
+        <encryption_context/>
+        <file_name>image</file_name>
+        <hash/>
+        <image_height>720</image_height>
+        <image_width>1280</image_width>
+        <size_bytes>15027</size_bytes>
+        <size_compressed>512</size_compressed>
+        <state>available</state>
+        <sys_created_by>admin.suganya</sys_created_by>
+        <sys_created_on>2018-10-31 07:24:19</sys_created_on>
+        <sys_id>e5a84eecdbe1230008d749ee3b96190f</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_updated_by>admin.suganya</sys_updated_by>
+        <sys_updated_on>2018-10-31 07:24:19</sys_updated_on>
+        <table_name>ZZ_YYdb_image</table_name>
+        <table_sys_id>75888e20db25230008d749ee3b9619db</table_sys_id>
+    </sys_attachment>
+    <sys_attachment_doc action="INSERT_OR_UPDATE">
+        <data>H4sIAAAAAAAAAA==</data>
+        <length>16</length>
+        <position>0</position>
+        <sys_attachment display_value="image" sys_id="e5a84eecdbe1230008d749ee3b96190f">e5a84eecdbe1230008d749ee3b96190f</sys_attachment>
+        <sys_created_by>admin.suganya</sys_created_by>
+        <sys_created_on>2018-10-31 07:24:19</sys_created_on>
+        <sys_id>eda84eecdbe1230008d749ee3b96190f</sys_id>
+    </sys_attachment_doc>
+    <sys_attachment_doc action="INSERT_OR_UPDATE">
+        <data>7dE3UBVBHMfx3dvdd/E9b9+7ezxtHB6gaEcwNg6gT6EDs5VgtgMD6owFmOkwawdmOlRMlSjGSoyAjZi1ArOOM+ceY2gs1NL5/W8/1e7d7Hcu6AkeEbciU54hlFKyUD0keEjKCNO0cKnhaglDCM6FpesRw7Ecx7ZsOxqLu9GYjNm2m3RlwvN93xmWlUp6qbjne+FHKFPvcGEKYXpRO+r99QQXiTS0W4IwmiaapEzSoIuMJIQKOjTk+1BN3TGiG6ZlqwMdLtEoYxpn4a3V7ka1T7gU8eyCkkiislpP13qFDc0tRk5pe6df1T2QW1RT12hayazU8BF5o0bnjxlbPG78hImTJpdNnZaZPqO8Yuas2XPmzpu/YNHiJUuXLV+xctXqNWvr163fsGnzlq3btu9o2rlr9569+/YfONh66PCRo8eOn2g7eep0x5mz585fuHS568rVa9dv3Lx95+69+w96evv6Hz95+uz5i5evXg++efvu/YePnz5/Cbuo6vwxv+2SqkvjnHE97KJafXhAcpFdEImXVOrVtYl0YYPhlTa3tHeaOUVVA35NXbeVzC3uzxsM04bK/iys8Z/Kfob96uojDqPq5zFJppCvba1N+QQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD+Kyzo/Qbh8hoXszoAAA==</data>
+        <length>672</length>
+        <position>1</position>
+        <sys_attachment display_value="image" sys_id="e5a84eecdbe1230008d749ee3b96190f">e5a84eecdbe1230008d749ee3b96190f</sys_attachment>
+        <sys_created_by>admin.suganya</sys_created_by>
+        <sys_created_on>2018-10-31 07:24:19</sys_created_on>
+        <sys_id>61a84eecdbe1230008d749ee3b961910</sys_id>
+    </sys_attachment_doc>
+</record_update>

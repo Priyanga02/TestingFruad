@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[function() {
+  /* widget controller */
+  var c = this;
+}]]></client_script>
+        <controller_as>c</controller_as>
+        <css>body {
+    margin:0;
+    padding:0;
+    font-family:sans-serif;
+    background:#fbfbfb;
+}
+.card {
+    position:relative;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,10%);
+    width:185px;//170
+    height:280px;
+    background:#fff;
+    box-shadow:0 20px 50px rgba(0,0,0,.1);
+    border-radius:10px;
+    transition:0.5s;
+}
+.card:hover {
+   // box-shadow:0 30px 70px rgba(0,0,0,.2);
+     box-shadow:5px 5px 5px #a63628;
+}
+.card .box {
+    position:relative;
+    top:50%;
+    left:0;
+    transform:translateY(-50%);
+    text-align:center;
+    padding:20px;
+    box-sizing:border-box;
+    width:100%;
+}
+.card .box .img {
+    width:120px;
+    height:120px;
+    margin:0 auto;
+    border-radius:50%;
+    overflow:hidden;
+}
+.card .box .img img {
+    width:100%;
+    height:100%;
+}
+.card .box h2 {
+    font-size:20px;
+    color:#262626;
+    //margin:20px auto;
+}
+.card .box h2 span {
+    font-size:14px;
+    font-family: "Times New Roman", Times, serif;
+    font-weight:bolder;
+    background:#e91e63;
+    color:#fff;
+    display:inline-block;
+    padding:4px 10px;
+    border-radius:15px;
+}
+.card .box p {
+    color:#262626;
+}
+.card .box span {
+    display:inline-flex;
+}
+.card .box ul {
+    margin:0;
+    padding:0;
+}
+.card .box ul li {
+    list-style:none;
+    float:left;
+}
+.card .box ul li a {
+    display:block;
+    color:#aaa;
+    margin:0 10px;
+    font-size:20px;
+    transition:0.5s;
+    text-align:center;
+}
+.card .box ul li:hover a {
+    color:#e91e63;
+    transform:rotateY(360deg);
+}
+.row{
+    margin:10px;
+  word-wrap: normal;
+  text-align: center;
+  font-weight: bold;
+  color:black;
+}
+</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>false</has_preview>
+        <id/>
+        <internal>false</internal>
+        <link/>
+        <name>Gamification trial widget4</name>
+        <option_schema/>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function() {
+  /* populate the 'data' object */
+  /* e.g., data.table = $sp.getValue('table'); */
+var gr = new GlideRecord('incident');
+gr.addQuery('state',6);
+gr.addQuery('assignment_group.type','b635c8c8db21ef000e269334ca9619fa');
+gr.addQuery('resolved_by',gs.getUserID());
+gr.query();
+if(gr.next()){
+data.resolvedByMe = gr.getRowCount();
+}else{
+	data.resolvedByMe =0;
+}
+
+var gr1 = new GlideRecord('incident');
+gr1.addQuery('assignment_group.type','b635c8c8db21ef000e269334ca9619fa');
+gr1.query();
+if(gr1.next()){
+data.totalresolve = gr1.getRowCount();
+}else{
+data.totalresolve = 0;	
+}
+
+data.percent = (data.resolvedByMe/data.totalresolve)*100;
+	data.percentfix = data.percent.toFixed(2);
+
+	var gr2 = new GlideRecord('u_gamification_criteria');
+	gr2.addQuery('u_criteria_name','FCR');
+	gr2.query();
+	if(gr2.next()){
+		data.expected = gr2.getDisplayValue('u_expected');
+}
+
+})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>admin.vikas</sys_created_by>
+        <sys_created_on>2018-11-01 10:39:21</sys_created_on>
+        <sys_id>9cee7330dba963000e269334ca96199d</sys_id>
+        <sys_mod_count>16</sys_mod_count>
+        <sys_name>Gamification trial widget4</sys_name>
+        <sys_package display_value="EsmCafe Gamification" source="db15d177db05230008d749ee3b9619c1">db15d177db05230008d749ee3b9619c1</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="EsmCafe Gamification">db15d177db05230008d749ee3b9619c1</sys_scope>
+        <sys_update_name>sp_widget_9cee7330dba963000e269334ca96199d</sys_update_name>
+        <sys_updated_by>admin.vikas</sys_updated_by>
+        <sys_updated_on>2018-11-06 09:10:41</sys_updated_on>
+        <template><![CDATA[<div class="card">
+    <div class="box">
+      
+         <h2><span>FIRST CALL RESOLUTION</span></h2>
+        	<div class="row">
+            <img src="gamification_tick.jpg" width="40" height="50" padding-top="20px">
+        	</div>
+      
+        <div class="row" style="color:#5b9bd5;font-size:25px;padding-top:20px;">{{data.percentfix}}%</div>
+        <h2><span>Expected</span></h2>
+        <div class="row" style="color:#92d050;font-size:25px;">{{data.expected}}%</div>
+    </div>
+</div>]]></template>
+    </sp_widget>
+</record_update>

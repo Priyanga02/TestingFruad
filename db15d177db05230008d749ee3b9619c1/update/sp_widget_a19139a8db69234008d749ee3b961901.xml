@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[function() {
+  /* widget controller */
+  var c = this;
+}]]></client_script>
+        <controller_as>c</controller_as>
+        <css>.square {
+   margin-top:30px;
+  height: 260px;
+  width: 160px;
+ // background-color: black;
+ // background-image:url('black.jpg');
+  background-color: rgba(39, 37, 41, .94);
+  border: 2px solid #a63628;
+  text-align:center;
+  font-size:12px;
+ // box-shadow: 5px 5px 5px #656565;
+}
+.square:hover {
+  box-shadow: 5px 5px 5px #a63628;
+      transform: scale(1.1); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+
+}
+.row{
+    margin:10px;
+  word-wrap: normal;
+  text-align: center;
+font-weight: bold;
+  color:white;
+}
+</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>true</has_preview>
+        <id>esmcafe_main3</id>
+        <internal>false</internal>
+        <link/>
+        <name>EsmCafe_Game_Main3</name>
+        <option_schema/>
+        <public>true</public>
+        <roles/>
+        <script><![CDATA[(function() {
+  /* populate the 'data' object */
+  /* e.g., data.table = $sp.getValue('table'); */
+var rec = new GlideAggregate('incident');
+rec.groupBy('assigned_to');
+rec.addAggregate('SUM','calendar_stc');
+rec.query();
+while(rec.next()){
+data.count = rec.getAggregate('SUM','calendar_stc');
+data.count1 = data.count/3600;
+if(rec.assigned_to == gs.getUserID()){
+data.finalval = data.count1.toFixed(2);
+}
+}
+	var gr = new GlideRecord('u_gamification_criteria');
+	gr.addQuery('u_criteria_name','FCR');
+	gr.query();
+	if(gr.next()){
+		data.expected = gr.getDisplayValue('u_expected');
+}
+
+})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>admin.suganya</sys_created_by>
+        <sys_created_on>2018-10-31 05:43:33</sys_created_on>
+        <sys_id>a19139a8db69234008d749ee3b961901</sys_id>
+        <sys_mod_count>16</sys_mod_count>
+        <sys_name>EsmCafe_Game_Main3</sys_name>
+        <sys_package display_value="EsmCafe Gamification" source="db15d177db05230008d749ee3b9619c1">db15d177db05230008d749ee3b9619c1</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="EsmCafe Gamification">db15d177db05230008d749ee3b9619c1</sys_scope>
+        <sys_update_name>sp_widget_a19139a8db69234008d749ee3b961901</sys_update_name>
+        <sys_updated_by>admin.suganya</sys_updated_by>
+        <sys_updated_on>2018-10-31 10:57:16</sys_updated_on>
+        <template><![CDATA[<div  class="square">
+
+ <div class="row">
+FIRST CALL RESOLUTION
+ </div>
+  <div class="row"> <img src="gamification_tick.jpg" width="40" height="50" padding-top="20px"></div>
+ <div class="row" style="color:#5b9bd5;font-size:25px;padding-top:20px;">{{data.finalval}}%</div>
+ <div class="row">Expected</div>
+ <div class="row" style="color:#92d050;font-size:25px;">{{data.expected}}%</div>
+  
+</div>]]></template>
+    </sp_widget>
+</record_update>

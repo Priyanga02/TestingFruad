@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_metadata_link">
+    <sys_metadata_link action="INSERT_OR_UPDATE">
+        <directory>update</directory>
+        <documentkey>04ebf855db35e7000e269334ca96197f</documentkey>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="u_esmcafe_gamification_table">
+    <u_esmcafe_gamification_table action="INSERT_OR_UPDATE">
+        <sys_created_by>admin.suganya</sys_created_by>
+        <sys_created_on>2018-11-14 20:00:01</sys_created_on>
+        <sys_id>04ebf855db35e7000e269334ca96197f</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin.suganya</sys_updated_by>
+        <sys_updated_on>2018-11-14 20:00:01</sys_updated_on>
+        <u_level>Level 3</u_level>
+        <u_points>218</u_points>
+        <u_user display_value="admin.suganya">a3774c02dbdce700d82a49ee3b9619ab</u_user>
+    </u_esmcafe_gamification_table>
+</record_update>
+]]></payload>
+        <sys_class_name>sys_metadata_link</sys_class_name>
+        <sys_created_by>admin.suganya</sys_created_by>
+        <sys_created_on>2018-11-15 04:37:54</sys_created_on>
+        <sys_id>ce62fa51dbf9e7000e269334ca9619cd</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>admin.suganya</sys_name>
+        <sys_package display_value="EsmCafe Gamification" source="db15d177db05230008d749ee3b9619c1">db15d177db05230008d749ee3b9619c1</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="EsmCafe Gamification">db15d177db05230008d749ee3b9619c1</sys_scope>
+        <sys_update_name>sys_metadata_link_ce62fa51dbf9e7000e269334ca9619cd</sys_update_name>
+        <sys_updated_by>admin.suganya</sys_updated_by>
+        <sys_updated_on>2018-11-15 04:37:54</sys_updated_on>
+        <tablename>u_esmcafe_gamification_table</tablename>
+    </sys_metadata_link>
+</record_update>

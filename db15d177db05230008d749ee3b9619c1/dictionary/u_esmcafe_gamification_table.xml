@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element label="Leaderboard" max_length="40" name="u_esmcafe_gamification_table" sizeclass="13" type="collection">
+        <element label="Level" max_length="100" name="u_level" type="string"/>
+        <element attributes="edge_encryption_enabled=true" label="Points" max_length="20" name="u_points" type="decimal"/>
+        <element attributes="edge_encryption_enabled=true" display="true" label="User" max_length="32" name="u_user" reference="sys_user" type="reference"/>
+        <index name="index">
+            <element name="u_user"/>
+        </index>
+    </element>
+</database>

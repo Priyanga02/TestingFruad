@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[function() {
+   /*widget controller */
+ /* var c = this;
+
+
+	//alert('test');
+   $("#mySidenav1").click(function(){
+    $("#mySidenav").animate({
+      width: "toggle"
+    });
+  });
+	
+	$("#mySidenav").click(function(){
+    $("#mySidenav").animate({
+      width: "toggle"
+    });
+  });
+*/
+
+}
+ ]]></client_script>
+        <controller_as>c</controller_as>
+        <css>#mySidenav {
+  margin-top:20px;
+   position: absolute;
+   left: -30px;
+	//background-color:#0e8a7d;
+  background: #cc2b5e;  /* fallback for old browsers */
+	background: -webkit-linear-gradient(to right, #753a88, #cc2b5e);  /* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(to right, #753a88, #cc2b5e); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  transition: 0.3s;
+  padding: 15px;
+  width:300px;
+  height:500px;
+  text-decoration: none;
+  font-size: 18px;
+  color: black;
+  border-radius: 0 5px 5px 0;
+}
+
+.sidenav {
+  background: #cc2b5e;  /* fallback for old browsers */
+	background: -webkit-linear-gradient(to right, #753a88, #cc2b5e);  /* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(to right, #753a88, #cc2b5e); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.modal {
+  
+   margin-top:100px;
+}
+
+td {
+    border-bottom-style: solid;
+    border-bottom-color: #2874A6;
+}
+th {
+    border-bottom-style: solid;
+    border-bottom-color: #2874A6;
+}
+tr {
+    border-bottom-style: solid;
+    border-bottom-color: #2874A6;
+}
+
+//#mySidenav a:hover {
+ // background-color: #ccc;
+  //left: 0;
+//}
+#about {
+    top: 20px;
+    background-color: #0e8a7d;
+    //text-orientation: sideways-right;
+   text-orientation: sideways;
+}
+.vertical-text {
+  padding-top:65px;
+  writing-mode: vertical-rl;
+  text-orientation: sideways;
+  text-align: center;
+}
+
+.vertical-text span {
+ // text-orientation:upright;
+  padding-top:50px;
+  text-align: center;
+  writing-mode: vertical-rl;
+  text-orientation: sideways;
+}
+#mySidenav1 a{
+    position: absolute;
+    left:-100px;
+    //margin-left:-112px;
+    transition: 0.3s;
+    padding: 15px;
+    width: 55px;
+    height:450px;
+    text-decoration: none;
+    text-align: center;
+    font-size: 20px;
+    color: white;
+    border-radius: 0 5px 5px 0;
+}
+#myDIV {
+    top: 15px;
+    background-color: #0e8a7d;
+    text-orientation: sideways;
+    text-align: center;
+}
+#myDIV01 {
+    background-color: #0e8a7d;
+background-color: hsla(120, 100%, 100%, 0.3);
+}
+
+
+}
+
+@media screen and (min-width:2560px){
+ #mySidenav1 a{
+    position: absolute;
+    left:-700px;
+    //margin-left:-112px;
+    transition: 0.3s;
+    padding: 15px;
+    width: 85px;
+    height:1320px;
+    text-decoration: none;
+    text-align: center;
+    //font-size: 25px;
+    color: white;
+    border-radius: 0 5px 5px 0;
+}
+  .vertical-text{
+    padding-top:370px;
+    font-size:45px;
+  }
+}</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>true</has_preview>
+        <id>esmcafe_pointscriteria</id>
+        <internal>false</internal>
+        <link/>
+        <name>EsmCafe_Gamification_PointsCriteria</name>
+        <option_schema/>
+        <public>true</public>
+        <roles/>
+        <script><![CDATA[(function() {
+  /* populate the 'data' object */
+  /* e.g., data.table = $sp.getValue('table'); */
+data.options=[];
+ var gp = new GlideRecord('u_gamification_criteria');
+ gp.addQuery('u_active',true);
+	gp.query();
+ while(gp.next()){
+	 var x={};
+	 
+	 x.points=gp.getValue('u_criteria_name');
+	 x.level=gp.getValue('u_points');	
+	  x.threshold=gp.getValue('u_threshold');	
+	 data.options.push(x);
+	 
+ }
+})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>admin.suganya</sys_created_by>
+        <sys_created_on>2018-11-06 06:36:22</sys_created_on>
+        <sys_id>0624786adb29e70008d749ee3b9619db</sys_id>
+        <sys_mod_count>293</sys_mod_count>
+        <sys_name>EsmCafe_Gamification_PointsCriteria</sys_name>
+        <sys_package display_value="EsmCafe Gamification" source="db15d177db05230008d749ee3b9619c1">db15d177db05230008d749ee3b9619c1</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="EsmCafe Gamification">db15d177db05230008d749ee3b9619c1</sys_scope>
+        <sys_update_name>sp_widget_0624786adb29e70008d749ee3b9619db</sys_update_name>
+        <sys_updated_by>rahul.biradar@infosys.com</sys_updated_by>
+        <sys_updated_on>2019-04-30 11:16:16</sys_updated_on>
+        <template><![CDATA[<!--<div>
+<div id="mySidenav" class="sidenav" style="display:none" >
+
+ 
+  <div class="content">
+    
+  <table class="table">
+  <thead>
+    <tr>
+      
+      <th scope="col">Criteria</th>
+      <th scope="col">Points</th>
+      <th scope="col">Threshold</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="i in data.options">
+     
+      <td data-label="Due Date">{{i.points}}</td>
+      <td data-label="Amount">{{i.level}}</td>
+       <td data-label="Amount">{{i.threshold}}</td>
+    </tr>
+   
+  </tbody>
+</table>
+  </div>
+  
+  </div>-->
+<div id="mySidenav1" class="sidenav" style="cursor: pointer;" >
+  
+  <a id="myDIV" class="sidenav" data-toggle="modal" data-target="#myModal" ><p class="vertical-text">Click here to view Points Criteria</p></a>
+  </div>
+<!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title" style="color:#2874A6;">Points Criteria</h4>
+        </div>
+        <div class="modal-body">
+          <table class="table">
+  <thead>
+    <tr>
+      
+      <th scope="col">Criteria</th>
+      <th scope="col">Points</th>
+      <th scope="col">Threshold</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="i in data.options">
+     
+      <td data-label="Due Date">{{i.points}}</td>
+      <td data-label="Amount">{{i.level}}</td>
+       <td data-label="Amount">{{i.threshold}}</td>
+    </tr>
+   
+  </tbody>
+</table>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+
+  
+  
+
+
+
+
+
+]]></template>
+    </sp_widget>
+</record_update>

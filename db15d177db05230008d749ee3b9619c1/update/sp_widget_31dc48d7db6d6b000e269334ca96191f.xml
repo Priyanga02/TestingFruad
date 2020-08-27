@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[function() {
+  /* widget controller */
+  var c = this;
+}]]></client_script>
+        <controller_as>c</controller_as>
+        <css>* {
+	box-sizing: border-box;
+}
+
+.clear {
+	clear: both;
+}
+
+body {
+	color: #333;
+	display: block;
+	font-family: Open Sans;
+	font-size: 13px;
+	line-height: 1.75em; /*18px;*/
+		-webkit-text-size-adjust: none;
+	margin: 0px;
+	text-rendering: optimizeLegibility;
+}
+
+p {
+	margin-top: 0px;
+	margin-bottom: 18px;
+}
+
+.card{
+   font-family: 'Oswald', sans-serif;
+  	font-weight:500;
+  	font-style:normal;
+  background-color: #f8f8f8;
+  width:190px;//170
+  height:290px;
+  margin:15px 0px 0px 20px;
+  box-shadow:0 20px 50px rgba(0,0,0,.1);
+  border-radius:6px;
+  transition:0.5s;
+  cursor:default;
+}
+
+ .card:hover {
+   // box-shadow:0 30px 70px rgba(0,0,0,.2);
+     box-shadow:5px 5px 5px #84d2ff;
+}
+
+.card-top {
+	color: #fff;
+	font-size: 18px;
+	padding: 15px;
+	//margin: 20px 20px 0 20px;
+  width:100%;
+  text-align:center;
+ border-radius: 6px 6px 0px 0px;
+}
+
+.card-top-green {
+	background-color:#007CC3;
+}
+
+.card-top-blue {
+		background-color:#007CC3;
+}
+
+.card-expected {
+  color: #061838;
+  width:100%;
+  text-align:center;
+ 
+  border-radius:0px;
+ 
+  
+  font-size:15px;
+  word-wrap: normal;
+}
+.new-expected
+{
+  border-bottom-right-radius: 6px;
+    border-bottom-left-radius: 6px; background:#92D1FF; height:87px; padding:12px;
+}
+
+
+.glyphicon-check {
+    font-size: 4em;
+    color: black;
+  -webkit-text-stroke: 2px white;
+}
+
+/*.card-bottom {
+	border-left: 1px solid #ddd;
+	border-right: 1px solid #ddd;
+	border-bottom: 1px solid #ddd;	
+	border-radius: 0 0 4px 4px;
+		-webkit-border-radius: 0 0 4px 4px;
+		-moz-border-radius: 0 0 4px 4px;
+	box-shadow: 0px 1px 4px 0px #eee, 0px 4px 6px -2px #eee;
+		-moz-box-shadow: 0px 1px 4px 0px #eee, 0px 4px 6px -2px #eee;
+    -webkit-box-shadow: 0px 1px 4px 0px #eee, 0px 4px 6px -2px #eee;
+	padding: 15px;
+	//margin: 0 20px 20px 20px;
+  width:100%;
+  height:100%;
+}*/
+
+.topNavColorContainer {
+	background-color: #f8f8f8;
+	box-shadow: 0px 2px 4px #dcddde;
+		-moz-box-shadow: 0px 2px 4px #dcddde;
+		-webkit-box-shadow: 0px 2px 4px #dcddde;
+	display: block;
+	height: auto;
+	margin: 0px auto;
+	width: 100%;
+}
+
+.row{
+    margin:7px;
+  word-wrap: normal;
+  text-align: center;
+  
+  color:black;
+  cursor:default;
+}
+
+
+@media screen and (min-width: 2560px){
+  .card{
+    margin-left:250px;
+    height:550px;
+    width:300px;
+  }
+   .card-top-green{
+    height:130px;
+  }
+  .glyphicon-check{
+    margin-top:40px;
+    font-size:140px;
+  }
+  .card-top
+{
+  font-size:30px;
+}
+}</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>false</has_preview>
+        <id/>
+        <internal>false</internal>
+        <link/>
+        <name>Esm Gamification widget4</name>
+        <option_schema/>
+        <public>true</public>
+        <roles/>
+        <script><![CDATA[(function() {
+  /* populate the 'data' object */
+  /* e.g., data.table = $sp.getValue('table'); */
+var gr = new GlideRecord('incident');
+gr.addQuery('state',6);
+gr.addQuery('assignment_group.type','b635c8c8db21ef000e269334ca9619fa');
+gr.addQuery('resolved_by',gs.getUserID());
+gr.query();
+if(gr.next()){
+data.resolvedByMe = gr.getRowCount();
+}else{
+	data.resolvedByMe =0;
+}
+
+var gr1 = new GlideRecord('incident');
+gr1.addQuery('assignment_group.type','b635c8c8db21ef000e269334ca9619fa');
+gr1.query();
+if(gr1.next()){
+data.totalresolve = gr1.getRowCount();
+}else{
+data.totalresolve = 0;	
+}
+
+	if(data.resolvedByMe != 0 && data.totalresolve != 0){
+data.percent = (data.resolvedByMe/data.totalresolve)*100;
+	}
+	else{
+		data.percent = 0;
+	}
+	
+	data.percentfix = data.percent.toFixed(2);
+
+	var gr2 = new GlideRecord('u_gamification_criteria');
+	gr2.addQuery('u_criteria_name','FCR');
+	gr2.query();
+	if(gr2.next()){
+		data.expected = gr2.getDisplayValue('u_expected');
+}
+	
+	data.percentfix = 76;
+	
+
+})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>admin.vikas</sys_created_by>
+        <sys_created_on>2018-11-08 11:26:41</sys_created_on>
+        <sys_id>31dc48d7db6d6b000e269334ca96191f</sys_id>
+        <sys_mod_count>36</sys_mod_count>
+        <sys_name>Esm Gamification widget4</sys_name>
+        <sys_package display_value="EsmCafe Gamification" source="db15d177db05230008d749ee3b9619c1">db15d177db05230008d749ee3b9619c1</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="EsmCafe Gamification">db15d177db05230008d749ee3b9619c1</sys_scope>
+        <sys_update_name>sp_widget_31dc48d7db6d6b000e269334ca96191f</sys_update_name>
+        <sys_updated_by>ujwal.kumar@infosys.com</sys_updated_by>
+        <sys_updated_on>2019-06-03 04:23:20</sys_updated_on>
+        <template><![CDATA[<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600" rel="stylesheet" type="text/css">
+
+<div class="card">
+	<div class="card-top card-top-green" >FIRST CALL RESOLUTION</div>
+  <div class="row">
+          <span class="glyphicon glyphicon-check"></span>
+     </div>
+  <!--<div ng-if="data.percentfix>=data.expected" class="row" style="color:#029624;font-size:30px;">{{data.percentfix}}%</div>
+  <div ng-if="data.percentfix<data.expected" class="row" style="color:#d60a19;font-size:30px;">{{data.percentfix}}%</div>-->
+   <div  class="row" style="color:#061838;font-size:30px;">{{data.percentfix}}%</div>
+  
+  <div class="new-expected" >
+  <div class="card-expected">EXPECTED</div>
+  <div class="row" style="color:#0961bf;font-size:25px;">{{data.expected}}%</div>
+  </div>
+</div>]]></template>
+    </sp_widget>
+</record_update>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_security_acl">
+    <sys_security_acl action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <admin_overrides>true</admin_overrides>
+        <advanced>false</advanced>
+        <condition/>
+        <description/>
+        <name>u_gamification</name>
+        <operation display_value="write">write</operation>
+        <script/>
+        <sys_class_name>sys_security_acl</sys_class_name>
+        <sys_created_by>suganya.nagarajan@infosys.com</sys_created_by>
+        <sys_created_on>2018-12-12 07:44:26</sys_created_on>
+        <sys_id>69df52ce0f9e6f40cc90563be1050e32</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>u_gamification</sys_name>
+        <sys_package display_value="EsmCafe Gamification" source="db15d177db05230008d749ee3b9619c1">db15d177db05230008d749ee3b9619c1</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="EsmCafe Gamification">db15d177db05230008d749ee3b9619c1</sys_scope>
+        <sys_update_name>sys_security_acl_69df52ce0f9e6f40cc90563be1050e32</sys_update_name>
+        <sys_updated_by>suganya.nagarajan@infosys.com</sys_updated_by>
+        <sys_updated_on>2018-12-12 07:44:26</sys_updated_on>
+        <type display_value="record">record</type>
+    </sys_security_acl>
+</record_update>

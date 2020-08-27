@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="m2m_sp_dependency_css_include">
+    <m2m_sp_dependency_css_include action="INSERT_OR_UPDATE">
+        <order>100</order>
+        <sp_css_include display_value="cloudflare">51b6233cdbe563000e269334ca96197b</sp_css_include>
+        <sp_dependency display_value="Gamification trial widget depen">5db5e3f4dbe563000e269334ca9619c2</sp_dependency>
+        <sys_class_name>m2m_sp_dependency_css_include</sys_class_name>
+        <sys_created_by>admin.vikas</sys_created_by>
+        <sys_created_on>2018-11-01 08:54:00</sys_created_on>
+        <sys_id>05c6ebf8dbe563000e269334ca961990</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>cloudflare.Gamification trial widget depen</sys_name>
+        <sys_package display_value="EsmCafe Gamification" source="db15d177db05230008d749ee3b9619c1">db15d177db05230008d749ee3b9619c1</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="EsmCafe Gamification">db15d177db05230008d749ee3b9619c1</sys_scope>
+        <sys_update_name>m2m_sp_dependency_css_include_05c6ebf8dbe563000e269334ca961990</sys_update_name>
+        <sys_updated_by>admin.vikas</sys_updated_by>
+        <sys_updated_on>2018-11-01 08:54:00</sys_updated_on>
+    </m2m_sp_dependency_css_include>
+</record_update>

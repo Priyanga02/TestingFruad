@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sysevent_email_action">
+    <sysevent_email_action action="INSERT_OR_UPDATE">
+        <action_insert>false</action_insert>
+        <action_update>false</action_update>
+        <active>false</active>
+        <advanced_condition/>
+        <affected_field_on_event/>
+        <category display_value="IT Service Management" name="IT Service Management">b69d02137f232200ee2e108c3ffa9142</category>
+        <collection>incident</collection>
+        <condition table="incident">state=6^EQ<item display_value="Resolved" endquery="false" field="state" goto="false" newquery="false" operator="=" or="false" value="6"/>
+            <item endquery="true" field="" goto="false" newquery="false" operator="=" or="false" value=""/>
+        </condition>
+        <content_type>multipart/mixed</content_type>
+        <default_interval/>
+        <description/>
+        <digest_from/>
+        <digest_html/>
+        <digest_reply_to/>
+        <digest_separator_html><![CDATA[<p>&nbsp;</p>
+<hr />
+<p>&nbsp;</p>]]></digest_separator_html>
+        <digest_separator_text><![CDATA[\n--------------------------------------------------------------------------------\n]]></digest_separator_text>
+        <digest_subject/>
+        <digest_template/>
+        <digest_text/>
+        <digestable>false</digestable>
+        <event_name>alert_priority.calc_priority_grouping</event_name>
+        <event_parm_1>true</event_parm_1>
+        <event_parm_2>false</event_parm_2>
+        <exclude_delegates>false</exclude_delegates>
+        <force_delivery>false</force_delivery>
+        <from/>
+        <generation_type>event</generation_type>
+        <importance/>
+        <include_attachments>false</include_attachments>
+        <item>event.parm1</item>
+        <item_table/>
+        <mandatory>false</mandatory>
+        <message><![CDATA[<font color="red">We value your input. Please help us by taking the time to fill out this short survey:</font>
+
+<a href =${event.parm2}>Click here to take the survey</a>
+
+Thanks, 
+
+<hr/>
+
+Number: ${number}
+Short description: ${short_description}
+Click here to view: ${URI_REF}
+<hr/>
+]]></message>
+        <message_html><![CDATA[<div><span style="font-family: georgia, palatino; font-size: 12pt;"><strong>Greetings ${opened_by.first_name},<br /></strong></span></div>
+<div>&nbsp;</div>
+<div><span style="font-family: georgia, palatino; font-size: 12pt;">${mail_script:incident_reopen_script}</span></div>
+<hr />
+<p style="text-align: left;"><span style="font-size: 12pt; font-family: georgia, palatino;">We really appreciate feedback !<span style="font-family: georgia, palatino;">Your Valuable input helps us improve our services.</span></span></p>
+<table style="height: 19px;" width="399">
+<tbody>
+<tr style="font-family: calibri;">
+<td style="font-size: 12pt; font-family: georgia, palatino;" width="25%"><strong>Please Click here to Survey</strong></td>
+<td style="padding: 2px 20px; background: #1e8ae7; border-top-left-radius: 1em; border-top-right-radius: 1em; font-size: 11pt; color: white; font-family: georgia, palatino; border-radius: 10px 10px 10px 10px;" align="center" width="10%"><a style="text-decoration: none; color: white;" href="/assessment_take2.do?sysparm_assessable_type=cf6e97d35d371200964f58e4abb23f18">Take Survey</a></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p><span style="font-family: georgia, palatino; font-size: 12pt;">Note -after&nbsp; 7 days, incident will be auto-closed.</span></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>]]></message_html>
+        <message_list>40500b0253020200601fa3fc9ec5873a</message_list>
+        <message_text/>
+        <name>EsmCafe_Incident_Resolved</name>
+        <omit_watermark>true</omit_watermark>
+        <order>100</order>
+        <push_message_only>false</push_message_only>
+        <recipient_fields>caller_id.email</recipient_fields>
+        <recipient_groups/>
+        <recipient_users/>
+        <reply_to>infosysesmcafedev@service-now.com</reply_to>
+        <send_self>true</send_self>
+        <sms_alternate/>
+        <style/>
+        <subject>Incident Is Resolved</subject>
+        <subscribable>false</subscribable>
+        <sys_class_name>sysevent_email_action</sys_class_name>
+        <sys_created_by>admin.suganya</sys_created_by>
+        <sys_created_on>2018-12-06 04:47:50</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>141e3a4cdb52e34008d749ee3b961995</sys_id>
+        <sys_mod_count>7</sys_mod_count>
+        <sys_name>EsmCafe_Incident_Resolved</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="EsmCafe Gamification" source="db15d177db05230008d749ee3b9619c1">db15d177db05230008d749ee3b9619c1</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="EsmCafe Gamification">db15d177db05230008d749ee3b9619c1</sys_scope>
+        <sys_update_name>sysevent_email_action_141e3a4cdb52e34008d749ee3b961995</sys_update_name>
+        <sys_updated_by>kalpit.pant@infosys.com</sys_updated_by>
+        <sys_updated_on>2018-12-11 08:04:55</sys_updated_on>
+        <sys_version>2</sys_version>
+        <template display_value="">d38af7d1dbe0e300d82a49ee3b96197e</template>
+        <type>email</type>
+        <u_hr/>
+        <weight>50</weight>
+    </sysevent_email_action>
+</record_update>

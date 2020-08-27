@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[function() {
+  /* widget controller */
+  var c = this;
+}]]></client_script>
+        <controller_as>c</controller_as>
+        <css>* {
+	box-sizing: border-box;
+}
+
+.clear {
+	clear: both;
+}
+img{
+  margin-top:30px;
+}
+
+.row-head{
+  word-wrap: normal;
+  text-align: center;
+  font-size:135%;
+  color:grey;
+  
+  margin-top:15px;
+  padding:15px;
+}
+
+
+body {
+	color: #333;
+	display: block;
+	font-family: Open Sans;
+	font-size: 13px;
+	line-height: 1.75em; /*18px;*/
+		-webkit-text-size-adjust: none;
+	margin: 0px;
+	text-rendering: optimizeLegibility;
+}
+
+p {
+	margin-top: 0px;
+	margin-bottom: 18px;
+}
+
+.card{
+  position:relative;
+  background-color: #f8f8f8;
+  width:408px;//170
+  height:290px;
+  margin:20px 0px 20px 23px;
+  box-shadow:0 20px 50px rgba(0,0,0,.1);
+  border-radius:6px;
+  transition:0.5s;
+  cursor:default;
+}
+
+ .card:hover {
+   // box-shadow:0 30px 70px rgba(0,0,0,.2);
+     box-shadow:5px 5px 5px #84d2ff;
+}
+
+h4
+{
+   font-family: 'Oswald', sans-serif;
+  	font-weight:500;
+  	font-style:normal;
+}
+
+h2
+{
+   font-family: 'Oswald', sans-serif;
+  	font-weight:500;
+  	font-style:normal;
+}
+.card-top {
+   font-family: 'Oswald', sans-serif;
+  	font-weight:600;
+  	font-style:normal;
+	color: #fff;
+	font-size: 18px;
+	padding: 15px;
+	//margin: 20px 20px 0 20px;
+  width:100%;
+  text-align:center;
+ border-radius: 6px 6px 0px 0px;
+}
+
+.card-top-green {
+	background-color:#007CC3;
+}
+
+.card-top-blue {
+		background-color: #0A6CB5;
+}
+
+/*.card-bottom {
+	border-left: 1px solid #ddd;
+	border-right: 1px solid #ddd;
+	border-bottom: 1px solid #ddd;	
+	border-radius: 0 0 4px 4px;
+		-webkit-border-radius: 0 0 4px 4px;
+		-moz-border-radius: 0 0 4px 4px;
+	box-shadow: 0px 1px 4px 0px #eee, 0px 4px 6px -2px #eee;
+		-moz-box-shadow: 0px 1px 4px 0px #eee, 0px 4px 6px -2px #eee;
+    -webkit-box-shadow: 0px 1px 4px 0px #eee, 0px 4px 6px -2px #eee;
+	padding: 15px;
+	//margin: 0 20px 20px 20px;
+  width:100%;
+  height:100%;
+}*/
+
+.topNavColorContainer {
+	background-color: #f8f8f8;
+	box-shadow: 0px 2px 4px #dcddde;
+		-moz-box-shadow: 0px 2px 4px #dcddde;
+		-webkit-box-shadow: 0px 2px 4px #dcddde;
+	display: block;
+	height: auto;
+	margin: 0px auto;
+	width: 100%;
+}
+.row{
+    margin:10px;
+  word-wrap: normal;
+  text-align: center;
+  
+  color:black;
+}
+
+#over
+{
+    position:absolute;
+    width:100%;
+    height:100%;
+    text-align: center; /*handles the horizontal centering*/
+}
+/*handles the vertical centering*/
+.Centerer
+{
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+}
+.Centered
+{
+    display: inline-block;
+    vertical-align: middle;
+}
+
+@media screen and (min-width: 2560px){
+  .card{
+    margin-left:-200px;
+    height:750px;
+    width:700px;
+  }
+  img{
+    margin-top:120px;
+    height:250px;
+    width:250px;
+  }
+  .row-head{
+    font-size:35px;
+  }
+  .card-top-green{
+    
+    height:90px;
+  }
+  .card-top
+{
+  font-size:35px;
+}
+}
+
+</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>true</has_preview>
+        <id/>
+        <internal>false</internal>
+        <link/>
+        <name>ESM Gamification widget5</name>
+        <option_schema/>
+        <public>true</public>
+        <roles/>
+        <script><![CDATA[(function() {
+  /* populate the 'data' object */
+  /* e.g., data.table = $sp.getValue('table'); */
+	var gr = new GlideRecord('u_esmcafe_gamification_table');
+	gr.addQuery('u_user',gs.getUserID());
+	gr.query();
+	if(gr.next()){
+		data.points = gr.getDisplayValue('u_points');
+		data.level = gr.u_level;
+	}else{
+		data.points = '0';
+		
+	}
+	
+	var gr1 = new GlideRecord('u_gamification_level');
+	gr1.addQuery('u_level',data.level);
+	gr1.query();
+	if(gr1.next()){
+		data.levname = gr1.getDisplayValue('u_level_name');
+		
+	}else{
+		data.levname = 'NewBie';
+	}
+	data.badgeicon = [];
+	var gr2 = new GlideRecord('u_gamification');
+	gr2.addQuery('u_user',gs.getUserID());
+	gr2.addNotNullQuery('u_badge_icon');
+	gr2.query();
+	while(gr2.next()){
+		data.badge = gr2.u_badge_icon;
+		
+	
+	var gr3 = new GlideRecord('u_gamification_badge');
+	gr3.addQuery('sys_id',data.badge);
+	gr3.query();
+	while(gr3.next()){
+		//data.badgeicon = gr3.getDisplayValue('u_badge_icon');
+		data.badgeicon.push(gr3.getDisplayValue('u_badge_icon'));
+	
+		
+	}
+	}
+	if(typeof data.badgeicon[0]=='undefined')
+		{
+			
+			data.badgeicon[0]=0;
+			console.log("First"+data.badgeicon[0]);
+			
+		}
+	
+	data.badgename = [];
+	var gr4 = new GlideRecord('u_gamification');
+	gr4.addQuery('u_user',gs.getUserID());
+	gr4.addNotNullQuery('u_badge_icon');
+	gr4.query();
+	while(gr4.next()){
+	data.badgename.push(gr4.getDisplayValue('u_badge_icon'));
+	}
+	console.log(data.badgename+'data.badgename');
+
+})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>admin.vikas</sys_created_by>
+        <sys_created_on>2018-11-08 12:06:31</sys_created_on>
+        <sys_id>f9e5dcdfdb6d6b000e269334ca961913</sys_id>
+        <sys_mod_count>117</sys_mod_count>
+        <sys_name>ESM Gamification widget5</sys_name>
+        <sys_package display_value="EsmCafe Gamification" source="db15d177db05230008d749ee3b9619c1">db15d177db05230008d749ee3b9619c1</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="EsmCafe Gamification">db15d177db05230008d749ee3b9619c1</sys_scope>
+        <sys_update_name>sp_widget_f9e5dcdfdb6d6b000e269334ca961913</sys_update_name>
+        <sys_updated_by>ujwal.kumar@infosys.com</sys_updated_by>
+        <sys_updated_on>2019-06-03 04:35:57</sys_updated_on>
+        <template><![CDATA[<link href="https://fonts.googleapis.com/css?family=Oswald:600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Oswald:500&display=swap" rel="stylesheet">
+
+
+<div class="card">
+  
+	<div class="card-top card-top-green" >ACHIEVEMENTS</div>
+ 
+ 
+
+    <div class="row" ng-if="data.badgeicon[0]!=0"> 
+    <div ng-repeat="badge in data.badgeicon">
+    <div class="col-md-4 col-sm-4 col-xs-4" style="margin-top:35px;" >
+    <img src="/{{badge}}" height="70px" width="70px">
+      
+    </div>
+    </div>
+    </div>
+
+     <div ng-repeat="badge in data.badgename">    
+     <div class="col-md-4 col-sm-4 col-xs-4" style="margin-top:-15px;" >
+     <h4 class="row-head" style="color:#061838">{{badge}}</h4>
+     </div>
+     </div>
+   
+  
+  <div ng-if="data.badgeicon[0]==0">
+   
+    <div>
+
+     <center> <img src="achievements.png" height="100px" width="100px"></center>
+       
+    </div>
+     <h2 class="row-head">
+      Currently you do not have any badges
+    </h2>
+    
+    
+  </div>
+  
+  
+</div>
+
+
+				]]></template>
+    </sp_widget>
+</record_update>

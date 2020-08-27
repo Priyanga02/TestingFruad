@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_script">
+    <sys_script action="INSERT_OR_UPDATE">
+        <abort_action>false</abort_action>
+        <access>package_private</access>
+        <action_delete>false</action_delete>
+        <action_insert>false</action_insert>
+        <action_query>false</action_query>
+        <action_update>true</action_update>
+        <active>false</active>
+        <add_message>false</add_message>
+        <advanced>true</advanced>
+        <change_fields>false</change_fields>
+        <client_callable>false</client_callable>
+        <collection>kb_knowledge</collection>
+        <condition/>
+        <description/>
+        <execute_function>false</execute_function>
+        <filter_condition table="kb_knowledge">workflow_state=published^EQ<item display_value="Published" endquery="false" field="workflow_state" goto="false" newquery="false" operator="=" or="false" value="published"/>
+            <item endquery="true" field="" goto="false" newquery="false" operator="=" or="false" value=""/>
+        </filter_condition>
+        <is_rest>false</is_rest>
+        <message/>
+        <name>EsmCafe_Gamification_ArticleIsPublished</name>
+        <order>100</order>
+        <priority>100</priority>
+        <rest_method/>
+        <rest_method_text/>
+        <rest_service/>
+        <rest_service_text/>
+        <rest_variables/>
+        <role_conditions/>
+        <script><![CDATA[(function executeRule(current, previous /*null when async*/) {
+	 // To add/update the record in Leaderboard table when the knowledge article is published.
+	var author = current.author;
+	 // Criteria is Knowledge Article/ Knowledge Feedback/Co
+	 var badgeName = '12d8117bdb05230008d749ee3b961931';
+	//Querying the Gamification criteria table to fetch the threshold values
+	 var grr = new GlideRecord('u_gamification_criteria');
+	 grr.addQuery('sys_id',badgeName);
+	 grr.query();
+	 
+	 var gr = new GlideRecord('u_gamification');
+	 gr.addEncodedQuery('u_badge_names=12d8117bdb05230008d749ee3b961931^u_user='+author);
+	 gr.query();
+	// Check whether the record is already present in Leaderboard table, if present update the record 
+	 if(grr.next()){
+		 var x=parseFloat(grr.u_points);
+		 if(gr.getRowCount()!=0){
+			if(gr.next()){
+				var y=parseFloat(gr.u_total_points)+x;
+				gr.u_total_points=y;
+				gr.update();	}
+		}
+		else{// If there is no record present in leaderboard table for the Service Desk agent, insert the record when the article is published.
+			var gr1 = new GlideRecord('u_gamification');
+			gr1.initialize();
+			gr1.u_user = author;		
+			gr1.u_total_points=x;
+			gr1.u_badge_names=badgeName;
+		//	gs.log("******02 "+gr.u_total_points);
+			gr1.insert();
+			
+		}
+	 }
+	 
+})(current, previous);]]></script>
+        <sys_class_name>sys_script</sys_class_name>
+        <sys_created_by>admin.vikas</sys_created_by>
+        <sys_created_on>2018-10-22 06:41:11</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>c4e02f65db99a7000e269334ca961951</sys_id>
+        <sys_mod_count>14</sys_mod_count>
+        <sys_name>EsmCafe_Gamification_ArticleIsPublished</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="EsmCafe Gamification" source="db15d177db05230008d749ee3b9619c1">db15d177db05230008d749ee3b9619c1</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="EsmCafe Gamification">db15d177db05230008d749ee3b9619c1</sys_scope>
+        <sys_update_name>sys_script_c4e02f65db99a7000e269334ca961951</sys_update_name>
+        <sys_updated_by>vikas.patel@infosys.com</sys_updated_by>
+        <sys_updated_on>2019-05-07 07:11:02</sys_updated_on>
+        <template/>
+        <when>after</when>
+    </sys_script>
+    <sys_translated_text action="delete_multiple" query="documentkey=c4e02f65db99a7000e269334ca961951"/>
+</record_update>

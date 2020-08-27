@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element label="Gamification Criteria" max_length="40" name="u_gamification_criteria" sizeclass="9" type="collection">
+        <element attributes="edge_encryption_enabled=true" default="true" label="Active" max_length="40" name="u_active" type="boolean"/>
+        <element display="true" label="Criteria Name" max_length="40" name="u_criteria_name" type="string"/>
+        <element label="Description" max_length="1000" name="u_description" type="string_full_utf8"/>
+        <element label="Expected" max_length="100" name="u_expected" type="string"/>
+        <element label="Points" max_length="40" name="u_points" type="string"/>
+        <element label="Threshold" max_length="100" name="u_threshold" type="string"/>
+    </element>
+</database>

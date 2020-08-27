@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[function() {
+  /* widget controller */
+  var c = this;
+}]]></client_script>
+        <controller_as>c</controller_as>
+        <css>.square {
+   margin-top:30px;
+  height: 260px;
+  width: 350px;
+ // background-color: black;
+ // background-image:url('black.jpg');
+  background-color: rgba(39, 37, 41, .94);
+  border: 2px solid #a63628;
+  text-align:center;
+  font-size:12px;
+ // box-shadow: 5px 5px 5px #656565;
+}
+.square:hover {
+  box-shadow: 5px 5px 5px #a63628;
+   transform: scale(1.1);
+}
+.row{
+    margin:10px;
+  word-wrap: normal;
+  text-align: center;
+font-weight: bold;
+  color:white;
+}
+</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description>This widget describes the EsmCafe leaderboard for gamification application.</description>
+        <docs/>
+        <field_list/>
+        <has_preview>true</has_preview>
+        <id>esmcafe_leaderboard</id>
+        <internal>false</internal>
+        <link/>
+        <name>EsmCafe LeaderBoard</name>
+        <option_schema/>
+        <public>true</public>
+        <roles/>
+        <script><![CDATA[(function() {
+	/* populate the 'data' object */
+	/* e.g., data.table = $sp.getValue('table'); */
+	
+	var gr = new GlideRecord('u_esmcafe_gamification_table');
+	gr.addQuery('u_user',gs.getUserID());
+	gr.query();
+	if(gr.next()){
+		data.points = gr.getDisplayValue('u_points');
+		data.level = gr.u_level;
+	}else{
+		data.points = '0';
+		
+	}
+	
+	var gr1 = new GlideRecord('u_gamification_level');
+	gr1.addQuery('u_level',data.level);
+	gr1.query();
+	if(gr1.next()){
+		data.levname = gr1.getDisplayValue('u_level_name');
+		
+	}else{
+		data.levname = 'NewBie';
+	}
+	data.badgeicon = [];
+	var gr2 = new GlideRecord('u_gamification');
+	gr2.addQuery('u_user',gs.getUserID());
+	gr2.addNotNullQuery('u_badge_icon');
+	gr2.query();
+	while(gr2.next()){
+		data.badge = gr2.u_badge_icon;
+		
+	
+	var gr3 = new GlideRecord('u_gamification_badge');
+	gr3.addQuery('sys_id',data.badge);
+	gr3.query();
+	while(gr3.next()){
+		//data.badgeicon = gr3.getDisplayValue('u_badge_icon');
+		data.badgeicon.push(gr3.getDisplayValue('u_badge_icon'));
+	
+		
+	}
+	}
+	
+	
+})();
+]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>admin.suganya</sys_created_by>
+        <sys_created_on>2018-10-23 05:59:32</sys_created_on>
+        <sys_id>4438ac0edb99e70008d749ee3b96197c</sys_id>
+        <sys_mod_count>257</sys_mod_count>
+        <sys_name>EsmCafe LeaderBoard</sys_name>
+        <sys_package display_value="EsmCafe Gamification" source="db15d177db05230008d749ee3b9619c1">db15d177db05230008d749ee3b9619c1</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="EsmCafe Gamification">db15d177db05230008d749ee3b9619c1</sys_scope>
+        <sys_update_name>sp_widget_4438ac0edb99e70008d749ee3b96197c</sys_update_name>
+        <sys_updated_by>admin.suganya</sys_updated_by>
+        <sys_updated_on>2018-10-31 11:36:42</sys_updated_on>
+        <template><![CDATA[
+<div class="square">
+  <span style="color:white;font-size:30px;font-weight:bold"><i class="fa fa-trophy">Achievements</i></span>
+<div class="row" > 
+  <div ng-repeat="badge in data.badgeicon">
+       <div class="col-md-4 col-sm-4 col-xs-4" style="margin-top:70px;" >
+   
+ <img src="/{{badge}}" height="70px" width="70px">
+   
+    </div>
+    </div>
+  </div>
+  
+</div>
+ 
+
+]]></template>
+    </sp_widget>
+</record_update>

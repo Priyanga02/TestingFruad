@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element label="My Points" max_length="40" name="u_gamification" sizeclass="0" type="collection">
+        <element attributes="edge_encryption_enabled=true" label="Badge" max_length="40" name="u_badge_icon" reference="u_gamification_badge" type="reference"/>
+        <element attributes="edge_encryption_enabled=true" label="Criteria" max_length="32" name="u_badge_names" reference="u_gamification_criteria" type="reference"/>
+        <element label="Incident Number" max_length="100" name="u_incident_number" type="string"/>
+        <element label="Level" max_length="40" name="u_level" type="string"/>
+        <element label="Total Points" max_length="40" name="u_total_points" type="string"/>
+        <element attributes="edge_encryption_enabled=true" label="User" max_length="32" name="u_user" reference="sys_user" type="reference"/>
+        <index name="index">
+            <element name="u_badge_names"/>
+        </index>
+        <index name="index2">
+            <element name="u_badge_icon"/>
+        </index>
+        <index name="index3">
+            <element name="u_user"/>
+        </index>
+    </element>
+</database>

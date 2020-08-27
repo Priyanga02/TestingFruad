@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_app_module">
+    <sys_app_module action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <application display_value="Esm Cafe Gamification">2b159177db05230008d749ee3b9619d4</application>
+        <assessment/>
+        <device_type/>
+        <filter/>
+        <hint/>
+        <homepage/>
+        <image/>
+        <link_type>DIRECT</link_type>
+        <map_page/>
+        <mobile_title>Gamification Portal</mobile_title>
+        <mobile_view_name>Mobile</mobile_view_name>
+        <name/>
+        <order>50</order>
+        <override_menu_roles>false</override_menu_roles>
+        <query>/gamification</query>
+        <report/>
+        <roles>ESMCafe Admin,itil</roles>
+        <sys_class_name>sys_app_module</sys_class_name>
+        <sys_created_by>vikas.patel@infosys.com</sys_created_by>
+        <sys_created_on>2018-12-11 05:22:04</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>e265fcb10f922f40cc90563be1050e05</sys_id>
+        <sys_mod_count>4</sys_mod_count>
+        <sys_name>ESM Gamification Portal</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="EsmCafe Gamification" source="db15d177db05230008d749ee3b9619c1">db15d177db05230008d749ee3b9619c1</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="EsmCafe Gamification">db15d177db05230008d749ee3b9619c1</sys_scope>
+        <sys_update_name>sys_app_module_e265fcb10f922f40cc90563be1050e05</sys_update_name>
+        <sys_updated_by>vikas.patel@infosys.com</sys_updated_by>
+        <sys_updated_on>2018-12-12 10:45:51</sys_updated_on>
+        <timeline_page/>
+        <title>ESM Gamification Portal</title>
+        <uncancelable>false</uncancelable>
+        <view_name/>
+        <window_name>_blank</window_name>
+    </sys_app_module>
+</record_update>
